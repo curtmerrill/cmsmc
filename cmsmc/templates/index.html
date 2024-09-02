@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1 class="site-tagline">Words, code and miscellany</h1>
+<h2>Recent posts</h2>
+<ul class="archive-list">
+{% for e in entries %}
+  <li class="archive-list__entry"><a class="plain" href="{{ e.get_absolute_url }}">
+    <span class="">{{ e.published_at|date:"Y M d" }}</span>
+    <u>{{ e.title }}</u>
+  </a></li>
+{% endfor %}
+  <li class="archive-list__entry"><a class="plain" href="/blog">
+    <span class="">&nbsp;</span>
+    All posts &rarr;
+</a></li>
+</ul>
+
+
+{% endblock %}

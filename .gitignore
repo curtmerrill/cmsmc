@@ -1,0 +1,9 @@
+.venv
+.env
+*.py[co]
+__pycache__
+.DS_Store
+staticfiles
+data
+blog_data.json
+datadump.json

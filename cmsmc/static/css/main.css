@@ -1,0 +1,52 @@
+@import url('_base.css');
+@import url('_header-footer.css');
+@import url('_blog-post.css');
+@import url('_figure.css');
+
+main {
+  padding-left: var(--page-margin);
+}
+
+.site-tagline {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  font-size: 3em;
+  font-weight: 100;
+  font-style: italic;
+  color: var(--c-gray-mid);
+}
+
+ul.archive-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li.archive-list__entry {
+  line-height: 1.75;
+}
+
+li.archive-list__entry.newgroup {
+  margin-top: 2rem;
+}
+
+li.archive-list__entry.newgroup:first-of-type {
+  margin-top: inherit;
+}
+
+li.archive-list__entry span {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  width: 11ch;
+  font-size: .825em;
+  color: var(--c-gray-mid);
+}
+
+.note {
+  font-size: .9em;
+  font-style: italic;
+  background-color: oklch(from var(--c-gray) 90% c h );
+  padding: .5em 1em;
+  border-radius: 5px;
+}

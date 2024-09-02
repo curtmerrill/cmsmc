@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h1>All posts</h1>
+  <ul class="archive-list">
+  {% for e in entries %}
+    <li class="archive-list__entry {% ifchanged e.published_at.year %}newgroup{% endifchanged %}">
+      <a class="plain" href="{{ e.get_absolute_url }}">
+        <span class="">{{ e.published_at|date:"Y M d" }}</span>
+        <u>{{ e.title }}</u>
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

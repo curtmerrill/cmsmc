@@ -1,0 +1,15 @@
+django>=5.0,<5.1
+# psycopg[binary]
+ipython
+django-debug-toolbar
+django-browser-reload
+rich
+black
+isort
+flake8
+python-dotenv
+markdown
+markdown_sub_sup
+markdown-del-ins
+markdown_mark
+gunicorn

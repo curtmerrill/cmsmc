@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ blog_post.title }} — {{ block.super }}{% endblock %}
+
+{% block headscripts %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ blog_post.title }}",
+  "url": "https://curtmerrill.com{{ blog_post.get_absolute_url }}",
+  "identifier": "{{ blog_post.uuid }}",
+  "description": "",
+  "author": {
+    "@type": "Person",
+    "name": "Curt Merrill",
+    "email": "curt@curtmerrill.com",
+    "url": "https://curtmerrill.com"
+  },
+  "image": "",
+  "datePublished": "{{ blog_post.published_at|date:"Y-m-d" }}"
+}
+
+</script>
+{% endblock %}
+
+{% block main %}
+<article class="blog-post{% if draft %} draft{% endif %}">
+
+<h1 class="post-title">{{ blog_post.title }}</h1>
+
+<p class="post-meta">
+<span class="post-date">
+{% if draft %}
+  {{ blog_post.created_at|date:"F j, Y" }}
+{% else %}
+  {{ blog_post.published_at|date:"F j, Y" }}
+{% endif %}
+</span>
+{% if blog_post.series %}
+<span class="post-series"><a href="{% url 'blog_archive_series' blog_post.series.slug %}">{{ blog_post.series.name }}</a></span>
+{% endif %}
+</p>
+
+{% if blog_post.rss_club %}
+<p class="note">
+  It’s a secret to everyone! <a href="https://daverupert.com/2018/01/welcome-to-rss-club/">Read more about RSS Club</a>.
+</p>
+{% endif %}
+
+{% if draft %}
+  {{ post_body|safe }}
+{% else %}
+  {{ blog_post.body_html|safe }}
+{% endif %}
+</article>
+
+{% if draft %}
+  <form method="POST">
+  {% csrf_token %}
+  <p><button type="submit" name="publish">Publish</button></p>
+
+  </form>
+{% endif %}
+
+
+{% endblock %}

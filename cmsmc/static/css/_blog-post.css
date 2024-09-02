@@ -1,0 +1,22 @@
+.blog-post > * {
+  margin-inline-end: var(--page-margin);
+  max-width: 700px;
+}
+
+.post-title {
+  font-size: 2.4em;
+  margin: 1.8rem 0 1rem;
+}
+
+.post-meta {
+  margin: 1rem 0 2rem;
+  font-size: .9em;
+  color: var(--c-gray-mid);
+}
+
+.post-series {
+  margin-inline-start: .5rem;
+  padding-inline-start: .5rem;
+  font-size: .9em;
+  text-transform: uppercase;
+}
