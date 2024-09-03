@@ -1,0 +1,11 @@
+services:
+  django:
+    build: .
+    env_file: "cmsmc/.env"
+    command: gunicorn --workers 3 --bind 0.0.0.0:8088 cmsmc.wsgi
+    volumes:
+      - /host/path/data:/data
+      - /host/path/staticfiles:/staticfiles
+    ports:
+      - "8088:8088"
+    restart: unless-stopped

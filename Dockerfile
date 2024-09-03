@@ -9,9 +9,7 @@ WORKDIR /cmsmc
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+COPY entrypoint.sh entrypoint.sh
 COPY cmsmc/ ./
 
-RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate --noinput
-
-CMD gunicorn --workers 3 --bind 0.0.0.0:8088 cmsmc.wsgi
+ENTRYPOINT ["./entrypoint.sh"]
