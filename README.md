@@ -32,6 +32,10 @@ To enable the pre-commit hooks for Black, isort, and flake8,
 
 Clone the repository.
 
+Copy `cmsmc/.env-template` to `cmsmc/.env`.
+
+Edit `cmsmc/.env` accordingly.
+
 Copy `compose-example.yaml` to `compose.yaml`.
 
 Update `compose.yaml` — specify where on the host to save the data and static files.
