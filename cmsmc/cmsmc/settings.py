@@ -18,6 +18,14 @@ ALLOWED_HOSTS = [
     "curtmerrill.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost",
+    "http://127.0.0.1",
+    "http://cm.pinehurst.house",
+    "https://beta.curtmerrill.com",
+    "https://curtmerrill.com",
+]
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",

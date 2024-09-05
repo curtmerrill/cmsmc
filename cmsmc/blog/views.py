@@ -91,7 +91,7 @@ class LatestBlogFeed(Feed):
         return body
 
     def item_pubdate(self, item):
-        item.published_at
+        return item.published_at
 
     def item_link(self, item):
         return item.get_absolute_url()
