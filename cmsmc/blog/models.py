@@ -62,6 +62,8 @@ class BlogPost(models.Model):
         null=True,
     )
 
+    og_image = models.CharField(max_length=255, blank=True, null=True)
+
     uuid = models.UUIDField(
         default=uuid.uuid4,
         editable=False,

@@ -3,25 +3,28 @@
 {% block title %}{{ blog_post.title }} — {{ block.super }}{% endblock %}
 
 {% block headscripts %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "{{ blog_post.title }}",
-  "url": "https://curtmerrill.com{{ blog_post.get_absolute_url }}",
-  "identifier": "{{ blog_post.uuid }}",
-  "description": "",
-  "author": {
-    "@type": "Person",
-    "name": "Curt Merrill",
-    "email": "curt@curtmerrill.com",
-    "url": "https://curtmerrill.com"
-  },
-  "image": "",
-  "datePublished": "{{ blog_post.published_at|date:"Y-m-d" }}"
-}
+  {% if blog_post.og_image %}
+  <meta property="og:image" content="{{ blog_post.og_image }}">
+  {% endif %}
 
-</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ blog_post.title }}",
+    "url": "https://curtmerrill.com{{ blog_post.get_absolute_url }}",
+    "identifier": "{{ blog_post.uuid }}",
+    "description": "",
+    "author": {
+      "@type": "Person",
+      "name": "Curt Merrill",
+      "email": "curt@curtmerrill.com",
+      "url": "https://curtmerrill.com"
+    },
+    "image": "{{ blog_post.og_image }}",
+    "datePublished": "{{ blog_post.published_at|date:"Y-m-d" }}"
+  }
+  </script>
 {% endblock %}
 
 {% block main %}
