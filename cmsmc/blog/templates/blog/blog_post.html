@@ -21,7 +21,7 @@
       "email": "curt@curtmerrill.com",
       "url": "https://curtmerrill.com"
     },
-    "image": "{{ blog_post.og_image }}",
+    "image": "{{ blog_post.og_image|default_if_none:"" }}",
     "datePublished": "{{ blog_post.published_at|date:"Y-m-d" }}"
   }
   </script>
