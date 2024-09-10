@@ -37,5 +37,8 @@
 {% block footerscripts %}
 {% endblock %}
 
+{% if request.headers.host == "curtmerrill.com" %}
+  <script src="https://tinylytics.app/embed/zT5_DSZQFy5GUANLbQR1.js" defer></script>
+{% endif %}
 </body>
 </html>
