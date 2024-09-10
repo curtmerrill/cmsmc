@@ -13,7 +13,9 @@ asttokens==2.4.1
 black==24.8.0
     # via -r requirements.in
 click==8.1.7
-    # via black
+    # via
+    #   black
+    #   granian
 decorator==5.1.1
     # via ipython
 django==5.0.7
@@ -29,7 +31,7 @@ executing==2.0.1
     # via stack-data
 flake8==7.1.1
     # via -r requirements.in
-gunicorn==23.0.0
+granian==1.6.0
     # via -r requirements.in
 ipython==8.26.0
     # via -r requirements.in
@@ -60,9 +62,7 @@ mdurl==0.1.2
 mypy-extensions==1.0.0
     # via black
 packaging==24.1
-    # via
-    #   black
-    #   gunicorn
+    # via black
 parso==0.8.4
     # via jedi
 pathspec==0.12.1
@@ -103,5 +103,7 @@ traitlets==5.14.3
     #   matplotlib-inline
 typing-extensions==4.12.2
     # via ipython
+uvloop==0.20.0
+    # via granian
 wcwidth==0.2.13
     # via prompt-toolkit
