@@ -9,7 +9,20 @@ class SeriesAdmin(admin.ModelAdmin):
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    pass
+    actions_on_top = True
+    actions_on_bottom = True
+    list_display = [
+        "title",
+        "published_at",
+        "series",
+    ]
+    list_editable = [
+        "series",
+    ]
+    list_filter = [
+        "published_at",
+        "series",
+    ]
 
 
 admin.site.register(Series, SeriesAdmin)
