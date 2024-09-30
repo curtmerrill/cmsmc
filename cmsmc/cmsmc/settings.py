@@ -52,6 +52,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INSTALLED_APPS = [
     # First party
     "blog.apps.BlogConfig",
+    "qs.apps.QsConfig",
     # Third party
     "debug_toolbar",
     "django_browser_reload",

@@ -8,6 +8,7 @@ from django.urls import path
 urlpatterns = [
     path("", site_index, name="index"),
     path("blog/", include("blog.urls")),
+    path("qs/", include("qs.urls")),
     path("now/", views.flatpage, {"url": "/now/"}, name="now"),
     path("uses/", views.flatpage, {"url": "/uses/"}, name="uses"),
     path("admin/", admin.site.urls),
