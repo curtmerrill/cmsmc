@@ -30,20 +30,17 @@
 {% block main %}
 <article class="blog-post{% if draft %} draft{% endif %}">
 
-<h1 class="post-title">{{ blog_post.title }}</h1>
-
-<p class="post-meta">
-<span class="post-date">
+<div class="post-meta">
+<p class="post-date">
 {% if draft %}
   {{ blog_post.created_at|date:"F j, Y" }}
 {% else %}
   {{ blog_post.published_at|date:"F j, Y" }}
 {% endif %}
-</span>
-{% if blog_post.series %}
-<span class="post-series"><a href="{% url 'blog_archive_series' blog_post.series.slug %}">{{ blog_post.series.name }}</a></span>
-{% endif %}
 </p>
+</div>
+
+<h1 class="post-title">{{ blog_post.title }}</h1>
 
 {% if blog_post.rss_club %}
 <p class="note">

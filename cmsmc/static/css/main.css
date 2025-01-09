@@ -9,12 +9,20 @@ main {
 }
 
 .site-tagline {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
 
   font-size: 3em;
   font-weight: 100;
   font-style: italic;
+  color: var(--c-gray-mid);
+}
+
+.index-post {
+  margin-bottom: 4rem;
+}
+a.index-link {
+  text-decoration: none;
   color: var(--c-gray-mid);
 }
 

@@ -2,19 +2,19 @@
 
 {% block main %}
 <h1 class="site-tagline">Words, code and miscellany</h1>
-<h2>Recent posts</h2>
-<ul class="archive-list">
-{% for e in entries %}
-  <li class="archive-list__entry"><a class="plain archive-list__link" href="{{ e.get_absolute_url }}">
-    <span class="archive-list__date">{{ e.published_at|date:"Y M d" }}</span>
-    <u>{{ e.title }}</u>
-  </a></li>
+
+{% for blog_post in entries %}
+<article class="blog-post index-post">
+
+<div class="post-meta">
+  <p class="post-date"><a href="{{ blog_post.get_absolute_url }}">{{ blog_post.published_at|date:"F j, Y" }}</a></p>
+</div>
+
+<h1 class="post-title">{{ blog_post.title }}</h1>
+
+{{ blog_post.body_html|safe }}
+</article>
 {% endfor %}
-  <li class="archive-list__entry"><a class="plain" href="/blog">
-    <span class="archive-list__date">&nbsp;</span>
-    All posts &rarr;
-</a></li>
-</ul>
 
 
 {% endblock %}
