@@ -8,3 +8,5 @@ staticfiles
 data
 blog_data.json
 datadump.json
+node_modules
+.nova

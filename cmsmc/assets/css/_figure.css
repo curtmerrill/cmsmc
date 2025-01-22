@@ -1,0 +1,35 @@
+figure {
+  container-type: inline-size;
+  container-name: figure;
+
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-block-start: var(--space-m);
+  margin-block-end: var(--space-m);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: var(--space-xs);
+  row-gap: var(--space-xs);
+}
+
+figure > *:first-child {
+  width: 100%;
+  max-width: 60ch;
+}
+
+figcaption {
+  width: 100%;
+  max-width: 60ch;
+  color: oklch(from var(--color-neutral-20) 50% c h);
+}
+
+@container figure (min-width: 80ch) {
+  figcaption {
+    width: unset;
+    max-width: 30ch;
+    flex: min-content;
+  }
+}

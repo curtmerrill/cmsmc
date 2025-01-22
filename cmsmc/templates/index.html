@@ -4,15 +4,22 @@
 <h1 class="site-tagline">Words, code and miscellany</h1>
 
 {% for blog_post in entries %}
-<article class="blog-post index-post">
+<article class="blog-post">
+<header>
+  <p class="post-meta">
+    <span class="post-meta__date">
+      {{ blog_post.published_at|date:"F j, Y" }}
+    </span>
+    {% if blog_post.series %}
+    <a href="{{ blog_post.series.get_absolute_url }}" class="tag">{{ blog_post.series.name }}</a>
+    {% endif %}
 
-<div class="post-meta">
-  <p class="post-date"><a href="{{ blog_post.get_absolute_url }}">{{ blog_post.published_at|date:"F j, Y" }}</a></p>
-</div>
-
-<h1 class="post-title">{{ blog_post.title }}</h1>
+  </p>
+  <h1 class="post-title"><a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a></h1>
+</header>
 
 {{ blog_post.body_html|safe }}
+
 </article>
 {% endfor %}
 

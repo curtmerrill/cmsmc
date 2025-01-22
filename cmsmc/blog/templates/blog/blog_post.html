@@ -30,23 +30,28 @@
 {% block main %}
 <article class="blog-post{% if draft %} draft{% endif %}">
 
-<div class="post-meta">
-<p class="post-date">
-{% if draft %}
-  {{ blog_post.created_at|date:"F j, Y" }}
-{% else %}
-  {{ blog_post.published_at|date:"F j, Y" }}
-{% endif %}
-</p>
-</div>
+<header>
+  <p class="post-meta">
+    <span class="post-meta__date">
+    {% if draft %}
+      {{ blog_post.created_at|date:"F j, Y" }}
+    {% else %}
+      {{ blog_post.published_at|date:"F j, Y" }}
+    {% endif %}
+    </span>
 
-<h1 class="post-title">{{ blog_post.title }}</h1>
+    {% if blog_post.rss_club %}
+    <a href="https://curtmerrill.com/blog/2023/rss-club/" class="tag">RSS Club</a>
+    {% endif %}
 
-{% if blog_post.rss_club %}
-<p class="note">
-  It’s a secret to everyone! <a href="https://daverupert.com/2018/01/welcome-to-rss-club/">Read more about RSS Club</a>.
-</p>
-{% endif %}
+    {% if blog_post.series %}
+    <a href="{{ blog_post.series.get_absolute_url }}" class="tag">{{ blog_post.series.name }}</a>
+    {% endif %}
+  </p>
+
+  <h1 class="post-title">{{ blog_post.title }}</h1>
+</header>
+
 
 {% if draft %}
   {{ post_body|safe }}

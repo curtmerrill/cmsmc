@@ -1,0 +1,10 @@
+.container {
+  padding-inline-start: var(--space-s-2xl);
+  padding-inline-end: var(--space-s-2xl);
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+a.plain { text-decoration: none; color: inherit; }

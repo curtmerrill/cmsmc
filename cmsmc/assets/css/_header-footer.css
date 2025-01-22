@@ -1,0 +1,34 @@
+.site-header {
+  padding-block-start: var(--space-s);
+  padding-block-end: var(--space-s);
+}
+
+.site-name {
+  font-size: var(--step-2);
+  font-weight: bold;
+  font-style: italic;
+}
+
+a.site-name {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.site-tagline {
+  font-size: var(--step-4);
+  font-weight: 200;
+  font-style: italic;
+  color: oklch(from var(--color-neutral-20) 50% c h);
+  margin: 0;
+  margin-block-start: var(--space-s-m);
+  margin-block-end: var(--space-l-xl);
+  padding: 0;
+}
+
+
+.site-footer {
+  margin-block-start: var(--space-xl-2xl);
+  padding-block-start: var(--space-m-l);
+  padding-block-end: var(--space-s-m);
+  background-color: oklch(from var(--color-neutral-95) 90% c h);
+}

@@ -11,22 +11,21 @@
     <link rel="icon" href="/favicon.ico">
     <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any">
     <link rel="apple-touch-icon" href="/apple.png">
-    <link rel="manifest" href="/manifest.webmanifest">
 
     <link rel="alternate" href="/blog/feed/" type="application/atom+xml" title="RSS">
 {% block headscripts %}
 {% endblock %}
 </head>
 <body>
-    <header class="site-header" role="banner">
+    <header class="site-header container" role="banner">
       <a class="site-name" href="/">curtmerrill.com</a>
     </header>
-    <main>
+    <main class="container">
     {% block main %}
     {% endblock %}
     </main>
-    <footer class="site-footer">
-      <ul class="archive-list">
+    <footer class="site-footer container">
+      <ul class="archive-list" role="list">
         <li><a class="plain" href="{% url 'blog_archive' %}">Archive</a></li>
         <li><a class="plain" href="/now/">/now</a></li>
         <li><a class="plain" href="/uses/">/uses</a></li>
@@ -41,4 +40,7 @@
   <script src="https://tinylytics.app/embed/zT5_DSZQFy5GUANLbQR1.js" defer></script>
 {% endif %}
 </body>
+
+<script src="{% static 'js/main.js' %}"></script>
+
 </html>

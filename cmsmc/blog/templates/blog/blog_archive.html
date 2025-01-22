@@ -2,7 +2,7 @@
 
 {% block main %}
   <h1>All posts</h1>
-  <ul class="archive-list">
+  <ul class="archive-list" role="list">
   {% for e in entries %}
     <li class="archive-list__entry {% ifchanged e.published_at.year %}newgroup{% endifchanged %}">
       <a class="plain archive-list__link" href="{{ e.get_absolute_url }}">
