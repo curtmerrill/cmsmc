@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h1>QS</h1>
+  <ul class="archive-list" role="list">
+  {% for l in labels %}
+    <li>
+      <a href="/qs/browse/{{ l.label }}/">
+        <u>{{ l.label }}</u>
+      </a>
+      </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

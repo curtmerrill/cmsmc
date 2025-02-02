@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h1>QS: {{ label }} ({{ entries|length }})</h1>
+  <ul class="archive-list" role="list">
+  {% for e in entries %}
+    <li>
+      <dl>
+        <dt>Created</dt>
+        <dd>{{ e.created_at }}
+
+        <dt>Value</dt>
+        <dd>{{ e.value }}
+
+
+          {% for k, v in e.body.items %}
+          <dt>{{ k }}</dt>
+          <dd>{{ v }}</dd>
+          {% endfor %}
+      </dl>
+
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

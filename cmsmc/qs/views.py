@@ -1,11 +1,11 @@
+import dotenv
 import json
 import os
 
-import dotenv
 from django.http import HttpResponse
 from django.http import JsonResponse
-
-# from django.shortcuts import render
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import JournalEntry
@@ -46,3 +46,33 @@ def create_entry(request):
     j.save()
 
     return JsonResponse({"status": "201"}, status="201")
+
+
+@login_required
+def label_list(request):
+    labels = JournalEntry.objects.order_by().values('label').distinct()
+
+    return render(request, 'qs/label_list.html', { 'labels': labels })
+
+
+@login_required
+def entry_list(request, label):
+    entries = JournalEntry.objects.filter(label=label)
+
+    return render(request, 'qs/entry_list.html', { 'entries': entries, 'label': label })
+
+
+def framed_summary(request):
+    entries = JournalEntry.objects.filter(label='framed')
+    framed = [{'id': e.value, 'seen': e.body['seen'], 'guesses': e.body['guesses']} for e in entries]
+    last_update = entries[0].created_at.strftime('%c');
+    for f in framed:
+        if '🟩' in f['guesses']:
+            f['correct_guess'] = 6 - f['guesses'].count('⬛')
+        else:
+            f['correct_guess'] = -1
+
+    return JsonResponse({
+        'lastUpdate': last_update,
+        'data': framed
+    }, status="201", safe=False)
