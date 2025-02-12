@@ -284,8 +284,8 @@ figure {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
-  column-gap: var(--space-xs);
+  align-items: flex-end;
+  column-gap: var(--space-s);
   row-gap: var(--space-xs);
 }
 
@@ -298,6 +298,7 @@ figcaption {
   width: 100%;
   max-width: 60ch;
   color: oklch(from var(--color-neutral-20) 50% c h);
+  font-size: var(--step--1);
 }
 
 @container figure (min-width: 80ch) {
