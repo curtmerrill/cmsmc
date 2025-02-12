@@ -1,5 +1,6 @@
 .blog-post {
   margin-block-start: var(--space-2xl);
+  margin-block-end: var(--space-2xl);
 }
 
 .blog-post > header {

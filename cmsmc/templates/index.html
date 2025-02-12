@@ -3,7 +3,6 @@
 {% block main %}
 <h1 class="site-tagline">Words, code and miscellany</h1>
 
-{% for blog_post in entries %}
 <article class="blog-post">
 <header>
   <p class="post-meta">
@@ -21,7 +20,25 @@
 {{ blog_post.body_html|safe }}
 
 </article>
+
+<h2>Previously</h2>
+<ul class="archive-list" role="list">
+{% for e in entries %}
+  <li class="archive-list__entry">
+    <a class="plain archive-list__link" href="{{ e.get_absolute_url }}">
+      <span class="archive-list__date">{{ e.published_at|date:"Y M d" }}</span>
+      <u>{{ e.title }}</u>
+    </a>
+  </li>
 {% endfor %}
+  <li class="archive-list__entry">
+    <a class="plain archive-list__link" href="">
+      <span class="archive-list__date">&nbsp;</span>
+      <u>More </u>
+    </a>
+</ul>
+
+
 
 
 {% endblock %}

@@ -9,8 +9,9 @@ from .models import BlogPost
 
 
 def site_index(request):
-    entries = BlogPost.objects.public()[:5]
-    return render(request, "index.html", {"entries": entries})
+    first_entry = BlogPost.objects.public().first()
+    entries = BlogPost.objects.public()[1:6]
+    return render(request, "index.html", {"blog_post": first_entry, "entries": entries})
 
 
 def blog_post(request, year, slug):
