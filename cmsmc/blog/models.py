@@ -41,7 +41,6 @@ class Series(models.Model):
     def __str__(self):
         return f"Series: {self.name}"
 
-
     def get_absolute_url(self):
         return reverse("blog_archive_series", kwargs={"slug": self.slug})
 

@@ -2,6 +2,7 @@ import dotenv
 import json
 import os
 
+from datetime import datetime, timedelta
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -50,29 +51,62 @@ def create_entry(request):
 
 @login_required
 def label_list(request):
-    labels = JournalEntry.objects.order_by().values('label').distinct()
+    labels = JournalEntry.objects.order_by().values("label").distinct()
 
-    return render(request, 'qs/label_list.html', { 'labels': labels })
+    return render(request, "qs/label_list.html", {"labels": labels})
 
 
 @login_required
 def entry_list(request, label):
     entries = JournalEntry.objects.filter(label=label)
 
-    return render(request, 'qs/entry_list.html', { 'entries': entries, 'label': label })
+    return render(request, "qs/entry_list.html", {"entries": entries, "label": label})
 
 
 def framed_summary(request):
-    entries = JournalEntry.objects.filter(label='framed')
-    framed = [{'id': e.value, 'seen': e.body['seen'], 'guesses': e.body['guesses']} for e in entries]
-    last_update = entries[0].created_at.strftime('%c');
+    entries = JournalEntry.objects.filter(label="framed")
+    framed = [
+        {"id": e.value, "seen": e.body["seen"], "guesses": e.body["guesses"]}
+        for e in entries
+    ]
+    last_update = entries[0].created_at.strftime("%c")
     for f in framed:
-        if '🟩' in f['guesses']:
-            f['correct_guess'] = 6 - f['guesses'].count('⬛')
+        if "🟩" in f["guesses"]:
+            f["correct_guess"] = 6 - f["guesses"].count("⬛")
         else:
-            f['correct_guess'] = -1
+            f["correct_guess"] = -1
 
-    return JsonResponse({
-        'lastUpdate': last_update,
-        'data': framed
-    }, status="201", safe=False)
+    return JsonResponse(
+        {"lastUpdate": last_update, "data": framed}, status="201", safe=False
+    )
+
+
+def now_summary(request):
+    two_months_ago = datetime.now() - timedelta(days=60)
+    recent_entries = JournalEntry.objects.filter(created_at__gt=two_months_ago)
+
+    battery = recent_entries.filter(label="battery").latest("created_at")
+    location = recent_entries.filter(label="location").latest("created_at")
+    tv = recent_entries.filter(label="tv")
+    book = recent_entries.filter(label="book")
+    movie = recent_entries.filter(label="movie")
+
+    return JsonResponse(
+        {
+            "battery": {
+                "level": battery.value,
+                "timestamp": battery.created_at.isoformat(),
+            },
+            "location": {
+                "place": location.value,
+                "timestamp": battery.created_at.isoformat(),
+            },
+            "tv": list({t.value for t in tv}),
+            "movie": list({m.value for m in movie}),
+            "book": [
+                {"title": b.body["title"], "author": b.body["author"]} for b in book
+            ],
+        },
+        status="201",
+        safe=False,
+    )

@@ -8,12 +8,6 @@ from django.shortcuts import render
 from .models import BlogPost
 
 
-def site_index(request):
-    first_entry = BlogPost.objects.public().first()
-    entries = BlogPost.objects.public()[1:6]
-    return render(request, "index.html", {"blog_post": first_entry, "entries": entries})
-
-
 def blog_post(request, year, slug):
     entry = get_object_or_404(BlogPost, slug=slug)
     return render(

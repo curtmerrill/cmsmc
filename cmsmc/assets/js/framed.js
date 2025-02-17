@@ -64,10 +64,12 @@ function drawHistogram(data) {
   const chartContainer = d3.select('#framed-histogram');
 
   chartContainer.append('h3')
+    .attr('id', 'guess-chart-title')
     .attr('class', 'chart-title')
     .text('Guess distribution for correctly identified movies')
 
   const chart = chartContainer.append('svg')
+    .attr('aria-labelledby', 'guess-chart-title')
     .attr('width', width)
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height])

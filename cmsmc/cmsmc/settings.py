@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # First party
     "blog.apps.BlogConfig",
     "qs.apps.QsConfig",
+    "pages.apps.PagesConfig",
     # Third party
     "debug_toolbar",
     "django_browser_reload",
@@ -64,7 +65,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "django.contrib.flatpages",
 ]
 
 INTERNAL_IPS = [
@@ -116,7 +116,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
 ROOT_URLCONF = "cmsmc.urls"

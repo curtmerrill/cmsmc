@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — {{ block.super }}{% endblock %}
+
+{% block headscripts %}
+  {% if page.og_image %}
+  <meta property="og:image" content="{{ page.og_image }}">
+  {% endif %}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ page.title }}",
+    "url": "https://curtmerrill.com/{{ page.slug }}/",
+    "identifier": "{{ page.slug }}",
+    "description": "",
+    "author": {
+      "@type": "Person",
+      "name": "Curt Merrill",
+      "email": "curt@curtmerrill.com",
+      "url": "https://curtmerrill.com"
+    },
+    "image": "{{ page.og_image|default_if_none:"" }}",
+    "datePublished": "{{ page.updated_at|date:"Y-m-d" }}"
+  }
+  </script>
+{% endblock %}
+
+{% block main %}
+<article class="blog-post{% if draft %} draft{% endif %}">
+
+<header>
+  <h1 class="post-title">{{ page.title }}</h1>
+</header>
+
+
+{% if draft %}
+  {{ page_body|safe }}
+{% else %}
+  {{ page.body_html|safe }}
+{% endif %}
+</article>
+
+{% if draft %}
+  <form method="POST">
+  {% csrf_token %}
+  <p><button type="submit" name="publish">Publish</button></p>
+
+  </form>
+{% endif %}
+
+
+{% endblock %}
