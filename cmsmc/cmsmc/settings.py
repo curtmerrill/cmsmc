@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "http://127.0.0.1",
-    "http://cm.pinehurst.house",
+    "https://cm.pinehurst.house",
     "https://beta.curtmerrill.com",
     "https://curtmerrill.com",
 ]
