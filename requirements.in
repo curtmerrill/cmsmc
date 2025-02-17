@@ -1,4 +1,4 @@
-django>=5.0,<5.1
+django>=5.1,<5.2
 # psycopg[binary]
 ipython
 django-debug-toolbar

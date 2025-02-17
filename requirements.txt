@@ -16,7 +16,7 @@ click==8.1.7
     # via black
 decorator==5.1.1
     # via ipython
-django==5.0.7
+django==5.1.6
     # via
     #   -r requirements.in
     #   django-browser-reload
