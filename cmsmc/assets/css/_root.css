@@ -1,5 +1,5 @@
 :root {
-  --color-primary: oklch(53.12% 0.15 253.18); /* blue */
+  --color-primary: oklch(53.12% 0.15 253.18); /* blue -- #1a6dc0 */
   --color-alt1: oklch(50.12% 0.15 39.53);     /* orange */
   --color-alt2: oklch(50.12% 0.15 309.79);    /* purple */
 
@@ -90,4 +90,8 @@ h1, h2, h3 {
 
 table {
   text-align: left;
+}
+
+small, .small {
+  font-size: .8em;
 }

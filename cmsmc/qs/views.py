@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.contrib.humanize.templatetags.humanize import NaturalTimeFormatter
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
@@ -96,6 +97,7 @@ def now_summary(request):
             "battery": {
                 "level": battery.value,
                 "timestamp": battery.created_at.isoformat(),
+                "time": NaturalTimeFormatter.string_for(battery.created_at),
             },
             "location": {
                 "place": location.value,

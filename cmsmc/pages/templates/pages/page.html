@@ -28,6 +28,7 @@
 {% endblock %}
 
 {% block main %}
+
 <article class="blog-post{% if draft %} draft{% endif %}">
 
 <header>
@@ -40,6 +41,11 @@
 {% else %}
   {{ page.body_html|safe }}
 {% endif %}
+
+<hr>
+<footer>
+<p><small><i>Updated {{ page.updated_at|date:"F j, Y" }}</i></small></p>
+</footer>
 </article>
 
 {% if draft %}

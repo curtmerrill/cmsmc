@@ -86,7 +86,7 @@ sub {
 }
 
 :root {
-  --color-primary: oklch(53.12% 0.15 253.18); /* blue */
+  --color-primary: oklch(53.12% 0.15 253.18); /* blue -- #1a6dc0 */
   --color-alt1: oklch(50.12% 0.15 39.53);     /* orange */
   --color-alt2: oklch(50.12% 0.15 309.79);    /* purple */
 
@@ -179,6 +179,10 @@ table {
   text-align: left;
 }
 
+small {
+  font-size: .8em;
+}
+
 .container {
   padding-inline-start: var(--space-s-2xl);
   padding-inline-end: var(--space-s-2xl);
@@ -189,6 +193,22 @@ table {
 }
 
 a.plain { text-decoration: none; color: inherit; }
+
+.light {
+  color: oklch(from var(--color-neutral-95) 50% c h);
+}
+
+.sr-only {
+  /* via Bootstrap: https://getbootstrap.com/docs/5.3/helpers/visually-hidden/ */
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 
 .site-header {
   padding-block-start: var(--space-s);
@@ -438,6 +458,47 @@ a.archive-list__link {
 rect {
   fill: var(--color-alt1);
 }
+
+.keys-values {
+  margin-top: 0;
+}
+
+.keys-values > dt {
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  /* color: oklch(from var(--color-neutral-95) 65% c h); */
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.keys-values > dd {
+  margin-inline-start: 0;
+}
+
+
+.symbol-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  column-gap: var(--space-xs);
+}
+
+.symbol {
+  position: relative;
+  top: 4px;
+}
+
+.fill-primary {
+  fill: var(--color-primary);
+}
+.fill-white {
+  fill: var(--color-neutral-95);
+}
+.fill-neutral {
+  fill: oklch(from var(--color-neutral-95) 70% c h);
+}
+
 
 
 

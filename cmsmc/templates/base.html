@@ -17,6 +17,7 @@
 {% endblock %}
 </head>
 <body>
+    {% include 'symbols.html' %}
     <header class="site-header container" role="banner">
       <a class="site-name" href="/">curtmerrill.com</a>
     </header>
@@ -29,6 +30,8 @@
         <li><a class="plain" href="{% url 'blog_archive' %}">Archive</a></li>
         <li><a class="plain" href="/now/">/now</a></li>
         <li><a class="plain" href="/uses/">/uses</a></li>
+        <li><a class="plain" href="https://xoxo.zone/@cmerrill">Mastodon</a></li>
+        <li><a class="plain" href="https://bsky.app/profile/cmerrill.com">Bluesky</a></li>
       </ul>
       <p>&copy; Curt Merrill<br />
       <i title="He who endures, conquers">Vincit qui patitur</i></p>
