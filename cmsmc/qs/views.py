@@ -88,6 +88,7 @@ def now_summary(request):
 
     battery = recent_entries.filter(label="battery").latest("created_at")
     location = recent_entries.filter(label="location").latest("created_at")
+    planes = recent_entries.filter(label="planes").latest("created_at")
     tv = recent_entries.filter(label="tv")
     book = recent_entries.filter(label="book")
     movie = recent_entries.filter(label="movie")
@@ -108,6 +109,11 @@ def now_summary(request):
             "book": [
                 {"title": b.body["title"], "author": b.body["author"]} for b in book
             ],
+            "planes": {
+                "count": planes.value,
+                "time": NaturalTimeFormatter.string_for(planes.created_at),
+            },
+
         },
         status="201",
         safe=False,

@@ -179,7 +179,7 @@ table {
   text-align: left;
 }
 
-small {
+small, .small {
   font-size: .8em;
 }
 
