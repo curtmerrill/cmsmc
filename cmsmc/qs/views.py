@@ -12,6 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import JournalEntry
 
+from .helpers import convert_state_name
+
 dotenv.load_dotenv()
 
 API_KEY = os.environ.get("QS_API_KEY", "Not loaded")
@@ -83,15 +85,18 @@ def framed_summary(request):
 
 
 def now_summary(request):
+    one_month_ago = datetime.now() - timedelta(days=30)
     two_months_ago = datetime.now() - timedelta(days=60)
     recent_entries = JournalEntry.objects.filter(created_at__gt=two_months_ago)
 
     battery = recent_entries.filter(label="battery").latest("created_at")
     location = recent_entries.filter(label="location").latest("created_at")
     planes = recent_entries.filter(label="planes").latest("created_at")
-    tv = recent_entries.filter(label="tv")
+    tv = recent_entries.filter(label="tv", created_at__gt=one_month_ago)
     book = recent_entries.filter(label="book")
     movie = recent_entries.filter(label="movie")
+
+    location_string = convert_state_name(location.value)
 
     return JsonResponse(
         {
@@ -101,7 +106,7 @@ def now_summary(request):
                 "time": NaturalTimeFormatter.string_for(battery.created_at),
             },
             "location": {
-                "place": location.value,
+                "place": location_string,
                 "timestamp": battery.created_at.isoformat(),
             },
             "tv": list({t.value for t in tv}),

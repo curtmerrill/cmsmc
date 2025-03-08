@@ -1,5 +1,7 @@
 compose.yaml
 .venv
+.envrc
+.direnv
 .env
 *.py[co]
 __pycache__
