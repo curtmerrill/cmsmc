@@ -85,7 +85,8 @@ blockquote:not([class]) {
 }
 
 h1, h2, h3 {
-  max-width: 25ch;
+  max-width: 50ch;
+  line-height: 1.2;
 }
 
 table {

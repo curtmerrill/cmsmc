@@ -1,18 +1,18 @@
-import dotenv
 import json
 import os
+from datetime import datetime
+from datetime import timedelta
 
-from datetime import datetime, timedelta
+import dotenv
+from django.contrib.auth.decorators import login_required
+from django.contrib.humanize.templatetags.humanize import NaturalTimeFormatter
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.contrib.humanize.templatetags.humanize import NaturalTimeFormatter
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import JournalEntry
-
 from .helpers import convert_state_name
+from .models import JournalEntry
 
 dotenv.load_dotenv()
 
@@ -118,7 +118,6 @@ def now_summary(request):
                 "count": planes.value,
                 "time": NaturalTimeFormatter.string_for(planes.created_at),
             },
-
         },
         status="201",
         safe=False,

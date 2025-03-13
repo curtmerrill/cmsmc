@@ -35,13 +35,13 @@
   <h1 class="post-title">{{ page.title }}</h1>
 </header>
 
-
+<div class="flow">
 {% if draft %}
   {{ page_body|safe }}
 {% else %}
   {{ page.body_html|safe }}
 {% endif %}
-
+</div>
 <hr>
 <footer>
 <p><small><i>Updated {{ page.updated_at|date:"F j, Y" }}</i></small></p>

@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import page_view
 from .views import page_draft_view
+from .views import page_view
 from .views import site_index
 
 urlpatterns = [

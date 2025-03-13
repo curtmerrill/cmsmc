@@ -1,11 +1,10 @@
 import markdown as md
-
-from django.shortcuts import render
+from blog.models import BlogPost
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 
 from .models import Page
-from blog.models import BlogPost
 
 
 def site_index(request):
@@ -15,12 +14,12 @@ def site_index(request):
 
 
 def page_view(request, slug):
-        page = get_object_or_404(Page, slug=slug)
-        return render(
-            request,
-            "pages/page.html",
-            {"page": page},
-        )
+    page = get_object_or_404(Page, slug=slug)
+    return render(
+        request,
+        "pages/page.html",
+        {"page": page},
+    )
 
 
 @login_required

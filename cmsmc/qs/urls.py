@@ -1,6 +1,10 @@
 from django.urls import path
 
-from .views import create_entry, label_list, entry_list, framed_summary, now_summary
+from .views import create_entry
+from .views import entry_list
+from .views import framed_summary
+from .views import label_list
+from .views import now_summary
 
 urlpatterns = [
     path("new", create_entry, name="new_entry"),
