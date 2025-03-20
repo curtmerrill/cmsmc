@@ -1,4 +1,4 @@
-FROM python:3.13-alpine
+FROM python:3.13
 
 RUN apt-get install -y curl
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash
