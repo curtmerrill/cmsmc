@@ -31556,39 +31556,161 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
 
 
-d3__WEBPACK_IMPORTED_MODULE_0__.json('/qs/summary/now/').then( (data) => {
+const config = {
+  'width': 960,
+  'height': 120,
+  'margins': {
+    'top': 5,
+    'right': 10,
+    'bottom': 34,
+    'left': 10
+  }
+}
+let minValue, maxValue;
+let chartData;
+let dataByMember;
 
-  d3__WEBPACK_IMPORTED_MODULE_0__.select('#recent-battery')
-    .append('dd')
-    .html(`${data.battery.level}% <small class="light">${data.battery.time}</small>`);
+const chartContainer = d3__WEBPACK_IMPORTED_MODULE_0__.select('#charts');
 
-  d3__WEBPACK_IMPORTED_MODULE_0__.select('#recent-location')
-    .append('dd')
-    .text(data.location.place);
+d3__WEBPACK_IMPORTED_MODULE_0__.csv('https://static.curtmerrill.com/2025/attendance.csv').then((data) => {
+  chartData = data.filter((d) => d.minutes_late != 'na').map((d) => {
+    d.minutes_late = +d.minutes_late;
+    return d;
+  });
+  dataByMember = d3__WEBPACK_IMPORTED_MODULE_0__.flatGroup(chartData, (d) => d.name).filter((g) => g[1].length >= 25);
 
-  d3__WEBPACK_IMPORTED_MODULE_0__.select('#recent-tv')
-    .selectAll('dd')
-    .data(data.tv)
-    .join('dd')
-      .html(d => `<i>${d}</i>`);
+  minValue = d3__WEBPACK_IMPORTED_MODULE_0__.min(chartData, (c) => c.minutes_late);
+  maxValue = d3__WEBPACK_IMPORTED_MODULE_0__.max(chartData, (c) => c.minutes_late);
 
-  d3__WEBPACK_IMPORTED_MODULE_0__.select('#recent-movie')
-    .selectAll('dd')
-    .data(data.movie)
-    .join('dd')
-      .html(d => `<i>${d}</i>`);
+  drawAll();
 
-  d3__WEBPACK_IMPORTED_MODULE_0__.select('#recent-book')
-    .selectAll('dd')
-    .data(data.book)
-    .join('dd')
-      .html(d => `<i>${d.title}</i> by ${d.author}`);
+  d3__WEBPACK_IMPORTED_MODULE_0__.select(window).on('resize', drawAll);
+});
 
-  d3__WEBPACK_IMPORTED_MODULE_0__.select('#recent-planes')
-      .append('dd')
-      .html(`${data.planes.count} <small class="light"><a href="https://www.flightaware.com/adsb/stats/user/scmerrill">${data.planes.time}</a></small>`);
+function drawAll() {
+  chartContainer.html('');
+  draw('All attendees', chartData);
 
-})
+  dataByMember.forEach((m) => {
+    draw(m[0], m[1]);
+  })
+}
+
+function draw(label, data) {
+  console.log(data);
+  config.width = chartContainer.node().getBoundingClientRect().width;
+
+  const meetingCount = data.length;
+  const onTimePct = data.filter(d => d.minutes_late < 0).length / data.length;
+  const meanArrival = d3__WEBPACK_IMPORTED_MODULE_0__.mean(data, d => d.minutes_late);
+
+  const chartHeight = config.height - config.margins.top - config.margins.bottom;
+
+  let yMax = label == 'All attendees' ? 500 : 50;
+
+  const bins = d3__WEBPACK_IMPORTED_MODULE_0__.bin()
+    .thresholds([minValue, -30, -15, 0, 5, 10, 15, 30, 60])
+    .domain([minValue, maxValue])
+    .value(d => parseInt(d.minutes_late))(data);
+
+  const x = d3__WEBPACK_IMPORTED_MODULE_0__.scaleBand()
+    .domain(d3__WEBPACK_IMPORTED_MODULE_0__.range(bins.length))
+    .range([0, config.width])
+    .paddingOuter(0)
+
+  const y = d3__WEBPACK_IMPORTED_MODULE_0__.scaleLinear()
+    .domain([0, yMax])
+    .range([chartHeight, 0]);
+
+  const xAxis = d3__WEBPACK_IMPORTED_MODULE_0__.axisBottom(x)
+    .tickSize(0)
+    .tickFormat('');
+
+  const yAxis = d3__WEBPACK_IMPORTED_MODULE_0__.axisLeft(y)
+    .tickSize(-config.width)
+    .ticks(3);
+
+  let thisChart = chartContainer.append('div')
+    .attr('class', 'single-chart');
+
+  thisChart.append('h3')
+    .attr('class', 'chart-title')
+    .html( () =>
+      label != 'All attendees' ? `${label}<span>, ${data[0].position}</span>` : label
+    );
+
+  thisChart.append('p')
+    .attr('class', 'annotation')
+    .text(`${d3__WEBPACK_IMPORTED_MODULE_0__.format(',')(meetingCount)} meeting arrivals`)
+  thisChart.append('p')
+    .attr('class', 'annotation')
+    .text(`${d3__WEBPACK_IMPORTED_MODULE_0__.format('.0%')(onTimePct)} on time`)
+  thisChart.append('p')
+    .attr('class', 'annotation')
+    .text(`Average arrival: ${d3__WEBPACK_IMPORTED_MODULE_0__.format('.0~f')(Math.abs(meanArrival))} minutes ${meanArrival < 0 ? 'early' : 'late'}`)
+
+  const svg = thisChart.append('svg')
+    .attr('width', config.width)
+    .attr('height', config.height)
+    .attr('viewBox', [0, 0, config.width, config.height]);
+
+
+  svg.append('g')
+      .attr('class', 'axis y')
+      .attr('transform', `translate(0, ${config.margins.top} )`)
+      .call(yAxis);
+
+
+    svg.selectAll('path.domain').remove();
+    svg.selectAll('.tick text')
+      .attr('text-anchor', 'start')
+      .attr('x', 1)
+      .attr('dy', -4)
+      .text( (d, i, j) => {
+        if (d == 0) { return '' }
+        if (i == j.length-1) { return `${d} arrivals`}
+        return d
+      })
+
+
+  const bar = svg.selectAll('g.bar')
+    .data(bins)
+    .join('g')
+      .attr('class', 'bar')
+      .attr('transform', (d,i) => `translate(${x(i)}, ${config.margins.top})`);
+
+  bar.append('rect')
+    .attr('width', x.bandwidth() - 1)
+    .attr('height', d => chartHeight - y(d.length))
+    .attr('class', d => d.x0 < 0 ? 'green' : 'orange')
+    .attr('transform', d => `translate(0, ${y(d.length)})`);
+
+  bar.append('text')
+    .attr('class', 'x-axis')
+    .attr('y', chartHeight+15)
+    .attr('x', x.bandwidth() / 2)
+    .text( (d,i) => {
+      if (i == 0) { return '30+' }
+      if (i == bins.length-1 ) { return '60+' }
+      if (d.x0 < 0) { return `${Math.abs(d.x1)}–${Math.abs(d.x0)}`}
+      return `${d.x0}–${d.x1}`
+    });
+
+
+  svg.append('text')
+    .attr('class', 'x-axis')
+    .attr('x', x(2))
+    .attr('y', config.height - 4)
+    .text('← minutes early')
+
+  svg.append('text')
+    .attr('class', 'x-axis')
+    .attr('x', x(4))
+    .attr('y', config.height - 4)
+    .attr('text-anchor', 'end')
+    .text('minutes late →')
+}
+
 
 })();
 

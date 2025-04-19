@@ -450,14 +450,55 @@ a.archive-list__link {
   font-size: var(--step-0);
 }
 
-.axis text {
+p.annotation {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--step--1);
+  color: oklch(from var(--color-neutral-95) 60% c h);
+}
+p.annotation:first-of-type {
+  margin-top: calc(var(--space-s) / 4);
+}
+p.annotation:last-of-type {
+  margin-bottom: var(--space-s);
+}
+
+.label text {
   fill: oklch(from var(--color-neutral-95) 40% c h);
   font-size: var(--step--1);
   font-weight: bold;
 }
 
-rect {
+rect:not([fill]) {
   fill: var(--color-alt1);
+}
+.axis .tick text {
+  fill: oklch(from var(--color-neutral-95) 60% c h);
+  font-size: var(--step--1);
+
+}
+.axis .tick line {
+  stroke: oklch(from var(--color-neutral-95) 80% c h);
+}
+
+text.x-axis {
+  fill: oklch(from var(--color-neutral-95) 60% c h);
+  font-size: var(--step--1);
+  text-anchor: middle;
+}
+
+rect.orange {
+  fill: var(--color-alt1);
+}
+
+rect.green {
+  fill: oklch(from var(--color-alt1) l c 145);
+}
+
+.chart-subtitle > span {
+  font-weight: normal;
+  color: oklch(from var(--color-neutral-95) 50% c h);
+
 }
 
 .keys-values {

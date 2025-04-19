@@ -3,10 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
+  mode: 'none',
   entry: {
     main: './js/index.js',
     framed: './js/framed.js',
     now: './js/now.js',
+    council: './js/council.js'
   },
   output: {
     filename: '[name].js',

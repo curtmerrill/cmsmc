@@ -84,7 +84,7 @@ function drawHistogram(data) {
       .attr('height', y.bandwidth());
 
   let axisY = chart.append('g')
-      .attr('class', 'axis y')
+      .attr('class', 'label y')
       .attr('transform', `translate(${marginLeft-5}, 0)`)
       .call(d3.axisLeft(y).tickValues([1,2,3,4,5,6]).tickFormat(d3.format('.0r')).tickSize(0))
       .call((g) => g.select('.domain').remove());
