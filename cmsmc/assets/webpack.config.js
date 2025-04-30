@@ -8,7 +8,8 @@ module.exports = {
     main: './js/index.js',
     framed: './js/framed.js',
     now: './js/now.js',
-    council: './js/council.js'
+    council: './js/council.js',
+    frames: './js/frames.js'
   },
   output: {
     filename: '[name].js',
