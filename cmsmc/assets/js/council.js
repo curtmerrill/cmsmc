@@ -41,7 +41,6 @@ function drawAll() {
 }
 
 function draw(label, data) {
-  console.log(data);
   config.width = chartContainer.node().getBoundingClientRect().width;
 
   const meetingCount = data.length;
