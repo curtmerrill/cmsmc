@@ -42,6 +42,9 @@
   --space-s-2xl: clamp(1rem, -0.3913rem + 6.9565vw, 5rem);
 }
 
+@view-transition {
+  navigation: auto;
+}
 
 body {
   color: var(--color-neutral-20);
