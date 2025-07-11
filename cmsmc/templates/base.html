@@ -28,6 +28,9 @@
     {% endblock %}
     </main>
     <footer class="site-footer container">
+
+      {% block footertop %}{% endblock %}
+
       <ul class="archive-list" role="list">
         <li><a class="plain" href="{% url 'blog_archive' %}">Archive</a></li>
         <li><a class="plain" href="/now/">/now</a></li>

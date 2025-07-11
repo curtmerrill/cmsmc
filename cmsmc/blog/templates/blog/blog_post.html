@@ -59,6 +59,9 @@
 {% endif %}
 </article>
 
+{% endblock %}
+
+{% block footertop %}
 {% if draft %}
   <form method="POST">
   {% csrf_token %}
@@ -66,6 +69,4 @@
 
   </form>
 {% endif %}
-
-
 {% endblock %}
