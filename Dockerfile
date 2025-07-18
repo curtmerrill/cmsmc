@@ -5,10 +5,6 @@ WORKDIR /app/cmsmc
 
 RUN uv sync --no-dev --locked
 
-# Link these to host filesystem using volumes in docker-compose.yml
-RUN mkdir /staticfiles
-RUN mkdir /data
-
 RUN uv run manage.py collectstatic --noinput
 RUN uv run manage.py migrate --noinput
 

@@ -84,7 +84,7 @@ WSGI_APPLICATION = "cmsmc.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR.parent / "data.db",
+        "NAME": BASE_DIR.parent / "data" / "data.db",
     }
 }
 
