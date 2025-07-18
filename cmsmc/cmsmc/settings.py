@@ -3,19 +3,27 @@ from pathlib import Path
 
 import dotenv
 
-# 0. Setup
-
+# Set BASE_DIR to root of Django project,
+# where manage.py lives
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 dotenv.load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-# 1. Django Core settings
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get("DEBUG", "") == "1"
+
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "cm.pinehurst.house",
     "beta.curtmerrill.com",
     "curtmerrill.com",
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -26,89 +34,24 @@ CSRF_TRUSTED_ORIGINS = [
     "https://curtmerrill.com",
 ]
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR.parent / "data" / "data.db",
-    }
-}
-
-# Saving for if/when I switch to Postgres
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": os.environ.get("DB_NAME"),
-#         "USER": os.environ.get("DB_USER"),
-#         "PASSWORD": os.environ.get("DB_PASS"),
-#         "HOST": os.environ.get("DB_HOST"),
-#         "PORT": os.environ.get("DB_PORT"),
-#     }
-# }
-
-DEBUG = os.environ.get("DEBUG", "") == "1"
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 INSTALLED_APPS = [
-    # First party
-    "blog.apps.BlogConfig",
-    "qs.apps.QsConfig",
-    "pages.apps.PagesConfig",
-    # Third party
-    "debug_toolbar",
-    "django_browser_reload",
-    # Contrib
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
+    # First party
+    "blog.apps.BlogConfig",
+    "qs.apps.QsConfig",
+    "pages.apps.PagesConfig",
+    # Third party
+    "debug_toolbar",
 ]
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-
-LANGUAGE_CODE = "en-us"
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "filters": {
-        "require_debug_true": {
-            "()": "django.utils.log.RequireDebugTrue",
-        },
-    },
-    "formatters": {
-        "rich": {"datefmt": "[%X]"},
-    },
-    "handlers": {
-        "console": {
-            "class": "rich.logging.RichHandler",
-            "filters": ["require_debug_true"],
-            "formatter": "rich",
-            "level": "DEBUG",
-            "rich_tracebacks": True,
-            "tracebacks_show_locals": True,
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": [],
-            "level": "INFO",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "INFO",
-    },
-}
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -119,20 +62,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "cmsmc.urls"
-
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-
-SITE_ID = 1
-
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR.parent / "staticfiles"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
 
 TEMPLATES = [
     {
@@ -150,15 +79,18 @@ TEMPLATES = [
     },
 ]
 
-TIME_ZONE = "UTC"
-
-USE_I18N = True
-
-USE_TZ = True
-
 WSGI_APPLICATION = "cmsmc.wsgi.application"
 
-# 2. Django Contrib Settings
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR.parent / "data.db",
+    }
+}
+
+
+# Password validation
+# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -175,6 +107,33 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# 3. Third party settings
 
-# 4. Project settings
+# Internationalization
+# https://docs.djangoproject.com/en/5.2/topics/i18n/
+
+LANGUAGE_CODE = "en-us"
+
+TIME_ZONE = "UTC"
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR.parent / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

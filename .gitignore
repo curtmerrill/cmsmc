@@ -1,14 +1,19 @@
-compose.yaml
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
 .venv
-.envrc
-.direnv
-.env
-*.py[co]
-__pycache__
+
+# Mac files
 .DS_Store
-staticfiles
-data
-blog_data.json
-datadump.json
-node_modules
 .nova
+
+# Project files
+staticfiles
+data.db
+.env

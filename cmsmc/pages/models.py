@@ -1,8 +1,5 @@
 import markdown as md
 from django.db import models
-from django.urls import reverse
-from django.utils import timezone
-from django.utils.text import slugify
 
 
 class Page(models.Model):

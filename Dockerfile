@@ -1,21 +1,16 @@
-FROM python:3.13
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
-RUN apt-get install -y curl
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash
-RUN apt-get install -y nodejs
+COPY . /app
+WORKDIR /app/cmsmc
 
-# TODO: build assets
+RUN uv sync --no-dev --locked
 
-RUN mkdir /cmsmc
+# Link these to host filesystem using volumes in docker-compose.yml
 RUN mkdir /staticfiles
 RUN mkdir /data
 
-WORKDIR /cmsmc
+RUN uv run manage.py collectstatic --noinput
+RUN uv run manage.py migrate --noinput
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+CMD ["uv", "run", "gunicorn", "--workers", "3", "--bind", "0.0.0.0:8088", "cmsmc.wsgi"]
 
-COPY entrypoint.sh entrypoint.sh
-COPY cmsmc/ ./
-
-ENTRYPOINT ["./entrypoint.sh"]

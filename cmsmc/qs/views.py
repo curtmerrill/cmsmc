@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from datetime import timedelta
 
-import dotenv
+# import dotenv
 from django.contrib.auth.decorators import login_required
 from django.contrib.humanize.templatetags.humanize import NaturalTimeFormatter
 from django.http import HttpResponse
@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .helpers import convert_state_name
 from .models import JournalEntry
 
-dotenv.load_dotenv()
+# dotenv.load_dotenv()
 
 API_KEY = os.environ.get("QS_API_KEY", "Not loaded")
 

@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("qs", "0002_alter_journalentry_created_at"),
     ]

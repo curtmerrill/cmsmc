@@ -1,9 +1,0 @@
-.fill-primary {
-  fill: var(--color-primary);
-}
-.fill-white {
-  fill: var(--color-neutral-95);
-}
-.fill-neutral {
-  fill: oklch(from var(--color-neutral-95) 70% c h);
-}

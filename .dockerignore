@@ -1,0 +1,6 @@
+.venv
+.envrc
+data.db
+staticfiles
+.DS_Store
+.nova

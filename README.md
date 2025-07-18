@@ -1,46 +1,36 @@
 # CMSMC
 
-_**C**urt **M**errill's **S**ystem for **M**anaging **C**ontent_
-
-## About
+**C**urt  
+**M**errill's  
+**S**ystem for  
+**M**anaging
+**C**ontent
 
 
 ## Development
 
-Clone the repository.
+Install [uv](https://docs.astral.sh/uv/)
 
-Create a virtual environment: `python -m venv --upgrade-deps .venv`
+Clone the repo
 
-Activate the environment: `source .venv/bin/activate`
+Install dependencies: `uv sync`
 
-Install pip-tools: `python -m pip install pip-tools`
+To add dependencies, use `uv add <pkg>` (add `--dev` for development tools)
 
-Install the requirements: `pip-sync`
+To remove dependencies, `uv remove <pkg>`
 
-To modify the dependencies, edit `requirements.in` then run `pip-compile` and `pip-sync`.
+After changing dependencies, sync the changes: `uv sync`
 
-In the `cmsmc` directory, make a copy of `.env-template` as `.env` and edit accordingly.
-
-Now you should be able to run `python manage.py runserver`.
-
-To enable the pre-commit hooks for Black, isort, and flake8,
-[install pre-commit](https://pre-commit.com/#installation), then enable the hook with
-`pre-commit install` from the project's root directory (where the `.git` folder lives).
+Use [ruff](https://docs.astral.sh/ruff/) for linting and formatting: `uv run ruff check`, `uv run ruff format`
 
 
 ## Deployment
 
-Clone the repository.
+Clone/pull the repository
 
-Copy `cmsmc/.env-template` to `cmsmc/.env`.
+Copy `cmsmc/.env-template` to `cmsmc/.env` and edit accordingly
 
-Edit `cmsmc/.env` accordingly.
+Update `docker-compose.yaml` — specify where on the host to save the static files
 
-Copy `compose-example.yaml` to `compose.yaml`.
+Update your reverse proxy, such as Nginx, so that it will serve the static files from the `/static` URL
 
-Update `compose.yaml` — specify where on the host to save the data and static files.
-
-Run `docker compose up --build -d`.
-
-Add a server block in Nginx (or other reverse proxy) to route requests for the specified
-domain to localhost port 8088.
