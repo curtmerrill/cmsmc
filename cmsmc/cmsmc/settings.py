@@ -9,10 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 dotenv.load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "") == "1"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DOCKER = os.environ.get("DOCKER", "") == "1"
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -87,7 +86,8 @@ DATABASES = {
         "NAME": BASE_DIR.parent / "data" / "data.db",
     }
 }
-
+if DOCKER:
+    DATABASES["default"]["NAME"] = Path("/data/data.db")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -125,6 +125,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR.parent / "staticfiles"
+
+if DOCKER:
+    STATIC_ROOT = Path("/staticfiles")
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
