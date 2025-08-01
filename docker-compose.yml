@@ -3,8 +3,8 @@ services:
     build: .
     env_file: "cmsmc/.env"
     volumes:
-      - /host/path/data:/app/data
-      - /host/path/staticfiles:/app/staticfiles
+      - /var/www/beta.curtmerrill.com/data:/data
+      - /var/www/beta.curtmerrill.com/staticfiles:/staticfiles
     ports:
-      - "8088:8088"
+      - "8087:8088"
     restart: unless-stopped
