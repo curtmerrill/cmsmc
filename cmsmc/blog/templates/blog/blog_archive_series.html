@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <h1>{{ entries.first.series.name }}</h1>
-  <ul class="archive-list">
+<div class="container">
+  <hgroup>
+    <h1>{{ entries.first.series.name }}</h1>
+  </hgroup>
+  <ul class="archive-list" role="list">
   {% for e in entries %}
-    <li class="archive-list__entry {% ifchanged e.published_at.year %}newgroup{% endifchanged %}">
-      <a class="plain archive-list__link" href="{{ e.get_absolute_url }}">
+    <li>
+      <a class="plain" href="{{ e.get_absolute_url }}">
         <span class="archive-list__date">{{ e.published_at|date:"Y M d" }}</span>
-        <u>{{ e.title }}</u>
+        {{ e.title }}
       </a>
-      </li>
+    </li>
   {% endfor %}
   </ul>
+</div>
 {% endblock %}

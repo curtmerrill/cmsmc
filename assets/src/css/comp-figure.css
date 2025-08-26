@@ -1,0 +1,36 @@
+figure {
+    margin-inline: 0;
+    margin-block-start: var(--space-l);
+    margin-block-end: var(--space-xs);
+}
+
+figure > *:first-child {
+    margin-block-start: 0;
+}
+
+figcaption {
+    margin-top: var(--space-xs);
+
+    font-size: var(--step--1);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+.full-width > *:first-child {
+  grid-column: full-width;
+}
+
+.popout > *:first-child {
+  grid-column: popout;
+}
+
+
+.border {
+    border: 1px solid var(--color-border-light);
+    border-radius: 5px;
+    padding: var(--space-m);
+}
+
+figcaption {
+  grid-column: content;
+}

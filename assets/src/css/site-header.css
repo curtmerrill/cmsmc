@@ -1,0 +1,12 @@
+.site-header {
+    padding-block: var(--space-xs);
+    margin-block-end: var(--space-xl);
+}
+
+.site-name {
+    font-size: var(--step-1);
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: var(--color-brand);
+}

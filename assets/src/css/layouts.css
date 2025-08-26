@@ -1,0 +1,46 @@
+/* Our main content container, a column centered within the viewport */
+.container {
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(0, 1fr)
+    [popout-start] minmax(0, var(--space-s-2xl))
+    [content-start] min(65ch, 100% - var(--space-s-2xl) * 2)
+    [content-end] minmax(0, var(--space-s-2xl))
+    [popout-end] minmax(0, 1fr)
+    [full-width-end];
+}
+
+.container > * {
+  grid-column: content;
+}
+
+/* A popout element extends beyond the column */
+.popout {
+  display: grid;
+  grid-column: popout-start / popout-end;
+  grid-template-columns: subgrid;
+}
+
+.full-width {
+    display: grid;
+    grid-column: full-width-start / full-width-end;
+    grid-template-columns: subgrid;
+}
+
+/* Vertical flow */
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+/* Inline flow */
+.cluster {
+    --gap: var(--space-xs);
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--gap);
+    column-gap: var(--space-l);
+}
+
+.uniform > * {
+    flex: 1 1 35%;
+}

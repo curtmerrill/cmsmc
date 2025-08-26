@@ -1,0 +1,23 @@
+ol > li::marker {
+    font-size: .9em;
+    font-weight: bold;
+    color: var(--color-brand);
+}
+
+ul > li::marker {
+    font-size: inherit;
+    color: var(--color-brand);
+}
+
+
+dt {
+    font-weight: bold;
+}
+dd {
+    margin-inline: 0;
+    margin-block-start: 0;
+    margin-block-end: 1em;
+}
+dd > *:first-child {
+    margin-block-start: 0;
+}

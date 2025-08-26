@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}curtmerrill.com{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
 
     <link rel="icon" href="/favicon.ico">
     <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any">
@@ -23,7 +23,7 @@
     <header class="site-header container" role="banner">
       <a class="site-name" href="/">curtmerrill.com</a>
     </header>
-    <main class="container">
+    <main>
     {% block main %}
     {% endblock %}
     </main>
@@ -31,7 +31,7 @@
 
       {% block footertop %}{% endblock %}
 
-      <ul class="archive-list" role="list">
+      <ul class="plain-list" role="list">
         <li><a class="plain" href="{% url 'blog_archive' %}">Archive</a></li>
         <li><a class="plain" href="/now/">/now</a></li>
         <li><a class="plain" href="/save/">/save</a></li>
@@ -44,11 +44,12 @@
 {% block footerscripts %}
 {% endblock %}
 
+<script src="{% static 'main.js' %}"></script>
 {% if request.headers.host == "curtmerrill.com" %}
   <script src="https://tinylytics.app/embed/zT5_DSZQFy5GUANLbQR1.js" defer></script>
 {% endif %}
+
 </body>
 
-<script src="{% static 'js/main.js' %}"></script>
 
 </html>

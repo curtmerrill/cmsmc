@@ -1,0 +1,6 @@
+.site-footer {
+  margin-block: var(--space-2xl) 0;
+  padding-block-start: var(--space-m-l);
+  padding-block-end: var(--space-s-m);
+  background-color: var(--color-bg-1);
+}

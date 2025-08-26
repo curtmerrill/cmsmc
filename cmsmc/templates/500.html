@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block main %}
-<p class="small">500</p>
+<div class="container">
+<hgroup>
+<p class="meta">500</p>
 <h1>Server error</h1>
+</hgroup>
 
 <p>Sorry, something isn't working on the server. Would you like to
   try the <a href="{% url 'blog_archive' %}">archive</a>
   or <a href="{% url 'index' %}">home page</a>?</p>
 
+</div>
 
 
 {% endblock %}

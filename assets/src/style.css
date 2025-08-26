@@ -1,0 +1,34 @@
+/* Sources and inspiration:
+   https://piccalil.li/blog/a-more-modern-css-reset/
+   https://www.youtube.com/watch?v=5uhIiI9Ld5M
+   https://kelpui.com
+   https://picocss.com
+*/
+
+@import './css/normalize.css';
+@import './css/variables.css';
+@import './css/base.css';
+@import './css/layouts.css';
+@import './css/typography.css';
+
+/* page components */
+@import './css/site-header.css';
+@import './css/site-footer.css';
+
+@import './css/comp-archive.css';
+@import './css/comp-hgroup.css';
+@import './css/comp-lists.css';
+@import './css/comp-figure.css';
+@import './css/comp-table.css';
+@import './css/comp-footnotes.css';
+@import './css/forms-inputs.css';
+
+
+.site-tagline {
+    margin-top: 0;
+    color: var(--color-text-muted);
+    font-weight: 100;
+    font-style: italic;
+    font-size: var(--step-4);
+    margin-bottom: var(--space-xl);
+}

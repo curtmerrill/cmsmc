@@ -1,0 +1,40 @@
+table {
+  border-collapse: collapse;
+  min-width: 100%;
+  text-align: left;
+
+}
+
+td, th {
+  padding-inline: var(--space-xs);
+  padding-block: calc(var(--space-xs)/2);
+}
+
+thead tr {
+  border-top: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+tbody:first-child {
+  border-top: 2px solid var(--color-border);
+}
+tbody:last-child {
+  border-bottom: 2px solid var(--color-border);
+}
+
+tbody > tr {
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+tfoot tr {
+  border-bottom: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-1);
+}
+
+.num {
+    font-variant-numeric: tabular-nums;
+}
+.mono {
+    font-family: (--f-mono);
+}

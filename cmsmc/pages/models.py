@@ -4,6 +4,7 @@ from django.db import models
 
 class Page(models.Model):
     title = models.CharField(max_length=255)
+    subtitle = models.CharField(max_length=511, blank=True, null=True)
     slug = models.CharField(max_length=255, blank=True)
 
     body_markdown = models.TextField(blank=True, null=True)

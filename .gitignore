@@ -15,5 +15,6 @@ wheels/
 
 # Project files
 staticfiles
-data.db
+data
 .env
+node_modules

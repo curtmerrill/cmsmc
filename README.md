@@ -34,3 +34,12 @@ Update `docker-compose.yaml` — specify where on the host to save the static f
 
 Update your reverse proxy, such as Nginx, so that it will serve the static files from the `/static` URL
 
+
+## Assets
+
+Javascript and stylesheet files are set up as a Vite project in the `assets`
+directory. Running `npm run build` will output files into the `cmsmc/static`
+directory where they can be collected with `uv run manage.py collectstatic`.
+
+The `package.json` is set up so that I can pull the main css file into other
+projects.

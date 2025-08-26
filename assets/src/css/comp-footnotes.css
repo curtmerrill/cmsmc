@@ -1,0 +1,26 @@
+.footnote-ref {
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: none;
+
+  padding-inline: 0.7ch;
+  padding-block: .1ch;
+  background-color: var(--color-bg-2);
+  border-radius: .5lh;
+
+}
+
+.footnote {
+  font-style: italic;
+  margin-block-start: var(--space-m);
+  font-size: var(--step--1);
+}
+
+.footnote i,
+.footnote em {
+  font-style: normal;
+}
+
+.footnote-backref {
+  text-decoration: none;
+}

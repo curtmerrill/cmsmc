@@ -1,43 +1,42 @@
 {% extends "base.html" %}
 
 {% block main %}
+<div class="container">
 <h1 class="site-tagline">Words, code and miscellany</h1>
+</div>
 
-<article class="blog-post">
-<header>
-  <p class="post-meta">
-    <span class="post-meta__date">
+<article class="container">
+<hgroup>
+  <p class="meta">
       {{ blog_post.published_at|date:"F j, Y" }}
-    </span>
     {% if blog_post.series %}
     <a href="{{ blog_post.series.get_absolute_url }}" class="tag">{{ blog_post.series.name }}</a>
     {% endif %}
-
   </p>
-  <h1 class="post-title"><a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a></h1>
-</header>
+  <h1><a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a></h1>
+  {% if blog_post.subtitle %}<p class="subtitle">{{ blog_post.subtitle }}</p>{% endif %}
+</hgroup>
 
 {{ blog_post.body_html|safe }}
 
 </article>
 
+<div class="container">
+  <hr/>
 <h2>Previously</h2>
 <ul class="archive-list" role="list">
 {% for e in entries %}
-  <li class="archive-list__entry">
-    <a class="plain archive-list__link" href="{{ e.get_absolute_url }}">
-      <span class="archive-list__date">{{ e.published_at|date:"Y M d" }}</span>
-      <u>{{ e.title }}</u>
-    </a>
-  </li>
+    <li>
+  <a class="plain" href="{{ e.get_absolute_url }}">
+    <span class="archive-list__date">{{ e.published_at|date:"Y M d" }}</span>
+    {{ e.title }}
+  </a>
+</li>
 {% endfor %}
-  <li class="archive-list__entry">
-    <a class="plain archive-list__link" href="">
-      <span class="archive-list__date">&nbsp;</span>
-      <u>More </u>
-    </a>
+<li><a class="plain" href="{% url 'blog_archive' %}">More</a></li>
 </ul>
 
+</div>
 
 
 

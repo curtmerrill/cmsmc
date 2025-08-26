@@ -1,0 +1,16 @@
+hgroup {
+    margin-block-end: var(--space-l);
+}
+hgroup > h1,
+hgroup > .h1 {
+    margin-block: 0;
+}
+hgroup > .subtitle {
+    margin-block-start: 0;
+    color: var(--color-text-muted);
+}
+hgroup > .meta {
+    margin-block: 0;
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+}

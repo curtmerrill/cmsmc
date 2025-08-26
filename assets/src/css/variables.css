@@ -1,0 +1,72 @@
+:root {
+
+  --f-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --f-serif: Palatino, Georgia, Times, "Times New Roman", serif;
+  --f-mono: "SF Mono", Consolas, monaco, monospace;
+
+
+  /* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1240,20,1.333,5,1,&s=0.75,1.5|2|3|4,s-2xl&g=s,l,xl,12 */
+
+  --step--1: clamp(0.8rem, 0.7521rem + 0.2395vw, 0.9377rem);
+  --step-0: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+  --step-1: clamp(1.25rem, 1.1052rem + 0.7239vw, 1.6663rem);
+  --step-2: clamp(1.5625rem, 1.3334rem + 1.1454vw, 2.2211rem);
+  --step-3: clamp(1.9531rem, 1.6026rem + 1.7524vw, 2.9607rem);
+  --step-4: clamp(2.4414rem, 1.9178rem + 2.6178vw, 3.9467rem);
+  --step-5: clamp(3.0518rem, 2.2834rem + 3.842vw, 5.2609rem);
+
+
+  /* @link https://utopia.fyi/space/calculator?c=320,16,1.25,1240,20,1.333,5,1,&s=0.75,1.5|2|3|4,s-2xl&g=s,l,xl,12 */
+
+  --space-xs: clamp(0.75rem, 0.6848rem + 0.3261vw, 0.9375rem);
+  --space-s: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+  --space-m: clamp(1.5rem, 1.3696rem + 0.6522vw, 1.875rem);
+  --space-l: clamp(2rem, 1.8261rem + 0.8696vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.6522rem + 1.7391vw, 5rem);
+
+  /* One-up pairs */
+  --space-xs-s: clamp(0.75rem, 0.5761rem + 0.8696vw, 1.25rem);
+  --space-s-m: clamp(1rem, 0.6957rem + 1.5217vw, 1.875rem);
+  --space-m-l: clamp(1.5rem, 1.1522rem + 1.7391vw, 2.5rem);
+  --space-l-xl: clamp(2rem, 1.3913rem + 3.0435vw, 3.75rem);
+  --space-xl-2xl: clamp(3rem, 2.3043rem + 3.4783vw, 5rem);
+
+  /* Custom pairs */
+  --space-s-2xl: clamp(1rem, -0.3913rem + 6.9565vw, 5rem);
+
+
+  /* COLORS */
+  /* gray scale, light to dark */
+  --color-light-gray: oklch(0.99 0.001 240);
+  --color-dark-gray: oklch(0.1 0.01 240);
+
+  --color-blue-base: oklch(45% 0.100 240);
+  --color-orange-base: oklch(45% 0.105 60);
+  --color-green-base: oklch(45% .105 150);
+  --color-purple-base: oklch(45% .105 330);
+  --color-red-base: oklch(45% .105 1);
+
+  /* COLORS: Semantic variables */
+  --color-bg: var(--color-light-gray);
+  --color-bg-1: oklch(from var(--color-light-gray) .97 c h);
+  --color-bg-2: oklch(from var(--color-light-gray) .95 c h);
+
+  --color-text: var(--color-dark-gray);
+  --color-text-muted: oklch(from var(--color-light-gray) .6 c h);
+  --color-text-light: var(--color-light-gray);
+  --color-text-link: var(--color-blue-base);
+  --color-text-link-alt: var(--color-orange-base);
+  --color-text-code: oklch(from var(--color-red-base) .5 .15 h);
+
+  --color-brand: var(--color-blue-base);
+  --color-alt1: var(--color-orange-base);
+  --color-alt2: oklch(--color-purple-base);
+
+
+  --color-border: oklch(from var(--color-dark-gray) .6 c h);
+  --color-border-light: oklch(from var(--color-dark-gray) .9 c h);
+
+}
+
+/* TODO: dark mode; change semantic variables */

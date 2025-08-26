@@ -1,0 +1,8 @@
+{
+  "name": "cmcss",
+  "version": "1.0.0",
+  "main": "cmsmc/static/main.css",
+  "files": [
+    "cmsmc/static/main.css"
+  ]
+}

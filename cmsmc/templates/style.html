@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}Style reference — {{ block.super }}{% endblock %}
+
+{% block main %}
+<div class="container">
+
+<hgroup>
+    <h1>CMCSS</h1>
+    <p class="subtitle">A reference and implementation guide for curtmerrill.com</p>
+</hgroup>
+
+<h2>Layout</h2>
+<p>This is a limited-use, focused and opinionated stylesheet. There is one primary column for content, established with the <code>container</code> class.</p>
+
+<p>Through the power of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout">CSS grids</a>, the direct descendants of any <code>.container</code> element are positioned and sized to the center column.</p>
+
+<p>Specific elements may extend beyond the main column, thanks to <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid#introduction_to_subgrid">subgrid</a>. <i class="muted">(See <a href="#figures">Media/figures</a> below.)</i></p>
+
+<figure>
+    <pre><code>&lt;html&gt;
+&lt;head&gt;
+...
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header class="site-header"&gt;
+    &lt;div class="container"&gt;...&lt;/div&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;div class="container"&gt;
+    ...
+    &lt;/div&gt;
+&lt;/main&gt;
+&lt;footer class="site-footer"&gt;
+    &lt;div class="container"&gt;...&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <figcaption>Basic HTML structure of all pages</figcaption>
+</figure>
+
+<h2>Colors</h2>
+<p>Base colors are defined using Oklch notation and assigned to variables in the stylesheet's <code>:root</code> element.</p>
+
+<figure class="popout">
+<table>
+    <thead>
+        <tr><th>Swatch</th><th>Variable name</th><th>Oklch value</th><th>RGB equivalent</th></tr>
+    </thead>
+    <tbody>
+    <tr><td><div class="swatch" style="background-color:oklch(99% 0.001 240);">&nbsp;</div></td><td>--color-light-gray</td><td class="num">oklch(99% 0.001 240)</td><td><code>#fbfcfc</code></td></tr>
+    <tr><td><div class="swatch" style="background-color:oklch(5% .01 240);">&nbsp;</div></td><td>--color-dark-gray</td><td class="num">oklch(10% 0.01 240)</td><td><code>#020405</code></td></tr>
+    <tr><td><div class="swatch" style="background-color:oklch(45% 0.100 240);">&nbsp;</div></td><td>--color-blue-base</td><td class="num">oklch(45% 0.100 240)</td><td><code>#085b87</code></td></tr>
+    <tr><td><div class="swatch" style="background-color:oklch(45% 0.105 60);">&nbsp;</div></td><td>--color-orange-base</td><td class="num">oklch(45% 0.105 60)</td><td><code>#7e4401</code></td></tr>
+
+    </tbody>
+</table>
+
+<style>
+.swatch {
+    width: 40px;
+    height: 40px;
+}
+</style>
+</figure>
+
+<p>I try not to use the base color variables directly. I create semantically named variables that reference them. And because they are in Oklch notation, it is relatively easy to modify them.</p>
+
+<figure>
+    <pre><code>--color-bg: var(--color-light-gray);
+--color-bg-1: oklch(from var(--color-light-gray) .97 c h);
+--color-bg-2: oklch(from var(--color-light-gray) .95 c h);
+
+--color-text: var(--color-dark-gray);
+--color-text-muted: oklch(from var(--color-light-gray) .6 c h);
+--color-text-light: var(--color-light-gray);</code></pre>
+    <figcaption>Examples of semantically named color variables using the base and modified base colors</figcaption>
+</figure>
+
+<p>My hope is that this technique will make it easier to enable dark mode.</p>
+
+<h2>Typography</h2>
+<p>Font sizes are calculated using <code>rem</code> units and <code>clamp()</code> functions generated from <a href="https://utopia.fyi">Utopia</a>.</p>
+
+<figure>
+    <table>
+        <thead>
+            <tr><th>Token name</th><th>Minimum size</th><th>Maximum size</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><code>--step--1</code></td><td>0.8 rem</td><td>0.9377 rem</td></td></tr>
+            <tr><td><code>--step-0</code></td><td>1.0 rem</td><td>1.25 rem</td></td></tr>
+            <tr><td><code>--step-1</code></td><td>1.25 rem</td><td>1.6663 rem</td></td></tr>
+            <tr><td><code>--step-2</code></td><td>1.5625 rem</td><td>2.2211 rem</td></td></tr>
+            <tr><td><code>--step-3</code></td><td>1.9531 rem</td><td>2.9607 rem</td></td></tr>
+            <tr><td><code>--step-4</code></td><td>2.4414 rem</td><td>3.9467 rem</td></td></tr>
+            <tr><td><code>--step-5</code></td><td>3.0518 rem</td><td>5.2609 rem</td></td></tr>
+        </tbody>
+    </table>
+</figure>
+
+<h3>Headers</h3>
+<p>The level 1 heading tag, <code>&lt;h1&gt;</code>, is reserved for page and post titles. Levels 2 and 3 are for subheads. Levels 4-6 are styled the same because they are rarely used.</p>
+<p>All heading tags are also available in class-form&mdash;<code>.h2</code>, for example&mdash;so they can be used for appearance’s sake without semantic meaning.</p>
+
+<figure>
+    <table>
+        <thead>
+            <tr><th>Tag, class</th><th>Sample text</th></tr>
+        </thead>
+        <tbody>
+        <tr><td><code>&lt;h1&gt;</code>, <code>.h1</code></td><td class="h1">Lorem ipsum dolor sit</td></tr>
+        <tr><td><code>&lt;h2&gt;</code>, <code>.h2</code></td><td class="h2">Dolor arcu porta lectus</td></tr>
+        <tr><td><code>&lt;h3&gt;</code>, <code>.h3</code></td><td class="h3">Aliquam sit amet nisi</td></tr>
+        <tr><td><code>&lt;h4&gt;</code>, <code>.h4</code></td><td class="h4">Sed vel risus nisi</td></tr>
+        <tr><td><code>&lt;h5&gt;</code>, <code>.h5</code></td><td class="h5">Aliquam at ullamcorper quam</td></tr>
+        <tr><td><code>&lt;h6&gt;</code>, <code>.h6</code></td><td class="h6">Morbi sollicitudin nulla sit amet</td></tr>
+        </tbody>
+    </table>
+</figure>
+
+<p>Page and post titles are wrapped in an <code>&lt;hgroup&gt;</code> tag, to control the spacing of metadata and subtitles.</p>
+
+<figure>
+    <div class="border">
+        <hgroup>
+            <p class="meta">Date or other meta data (optional)</p>
+            <p class="h1">Post or page title</p>
+            <p class="subtitle">Page subtitle or description (optional)</p>
+        </hgroup>
+    </div>
+</figure>
+
+<h3>Inline styles</h3>
+
+<figure>
+    <div class="border cluster uniform">
+        <div><a href="#">Default link</a> <code>&lt;a&gt;</code></div>
+        <div><a href="#" class="plain">Plain link</a> <code>&lt;a class="plain"&gt;</code></div>
+        <div><b>Bold</b> <code>&lt;b&gt;</code> <code>&lt;strong&gt;</code></div>
+        <div><i>Italic</i> <code>&lt;i&gt;</code> <code>&lt;em&gt;</code></div>
+        <div><b><i>Bold + italic</i></b> <code>&lt;b&gt;</code>+<code>&lt;i&gt;</code></div>
+        <div>Text<sub>Sub</sub> <code>&lt;sub&gt;</code></div>
+        <div>Text<sup>Sup</sup> <code>&lt;sup&gt;</code></div>
+        <div><small>Small</small> <code>&lt;small&gt;</code></div>
+        <div><code>Code</code> <code>&lt;code&gt;</code></div>
+        <div><abbr title="Abbreviation">Abbr</abbr> <code>&lt;abbr&gt;</code></div>
+        <div><s>Strikethrough</s> <code>&lt;s&gt;</code></div>
+        <div><del>Deleted</del> <code>&lt;del&gt;</code></div>
+        <div><ins>Inserted</ins> <code>&lt;ins&gt;</code></div>
+        <div><mark>Highlight</mark> <code>&lt;mark&gt;</code></div>
+        <div><u>Underline</u> <code>&lt;u&gt;</code></div>
+        <div><kbd>Shift + S</kbd> <code>&lt;kbd&gt;</code></div>
+    </div>
+    <figcaption>Examples of inline styles</figcaption>
+</figure>
+
+
+<h2>Block elements</h2>
+<pre>A &lt;pre&gt; tag
+by itself allows for manual
+line breaks</pre>
+
+<pre><code>Code blocks are contained within &lt;pre&gt;&lt;code&gt; tags.</code></pre>
+
+<p>In Markdown, three asterisks on a line, <code>***</code>, creates a horizontal rule:</p>
+
+<hr>
+
+<h3>Lists</h3>
+
+<ol>
+    <li>Basic ordered list, <code>ol</code></li>
+    <li>Multiple items</li>
+</ol>
+
+<ul>
+    <li>When order doesn't matter</li>
+    <li>Use the unordered list, <code>ul</code></li>
+</ul>
+
+<dl>
+    <dt>Definition list</dt>
+    <dd><p>Used for terms and definitions</p></dd>
+    <dt>Key</dt>
+    <dd><p>Value</p></dd>
+    <dt>Standard term</dt>
+    <dd>
+        <p>Definition with multiple blocks&hellip;
+        <pre><code>&hellip;Including some example code</code></pre>
+    </dd>
+</dl>
+
+<h3>Blockquote</h3>
+
+<blockquote><p>VisiData is a free, open-source tool that lets you quickly open, explore, summarize, and analyze datasets in your computer’s terminal. VisiData works with CSV files, Excel spreadsheets, SQL databases, and many other data sources.</p>
+<p><cite>— <a href="https://jsvine.github.io/intro-to-visidata/index.html">An Introduction to VisiData</a></cite></p>
+</blockquote>
+
+
+<h2 id="figures">Media/figures</h2>
+<p>The figure element should be used with media elements including images, videos and tables.</p>
+
+<figure>
+    <pre><code>&lt;figure&gt;
+    &lt;[img|video|div|table|etc.]&gt;
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+    <figcaption>Basic syntax for a figure element and caption</figcaption>
+</figure>
+
+<p>The <code>&lt;figure&gt;</code> tag has two optional classes, <code>full-width</code> and <code>popout</code>. Using those classes extends the primary element of the figure beyond the edges of the content column.</p>
+
+<p>And the first child of a <code>figure</code> element can have the <code>border</code> class. Using the <code>border</code> class on the primary element adds a border and padding. The demonstration of inline styles earlier in this document is an example of the <code>border</code> class in use.</p>
+
+<figure class="full-width">
+    <div style="background: linear-gradient(135deg, var(--color-red-base) 0%, var(--color-orange-base)); padding: 25px; color: white;">This box extends to the full width of the viewport.</div>
+    <figcaption>Example of a figure with the <code>full-width</code> class</figcaption>
+</figure>
+
+
+<figure class="popout">
+    <div style="background: linear-gradient(135deg, oklch(45% 0.100 240) 0%, oklch(45% .105 150) 90%); padding: 25px; color: white;">This box extends beyond the content column.</div>
+    <figcaption>Example of a figure with the <code>popout</code> class
+</figure>
+
+
+<h3>Tables</h3>
+<p>Tables should be contained within a <code>figure</code> element. Table headers and footers should be in <code>thead</code> and <code>tfoot</code> elements respectively, and the body should be in the <code>tbody</code> element.</p>
+<p>The default styling is a heavy border at the top and bottom, a medium border separating the body from the header and footer, and light borders between rows.</p>
+<p>There are examples of tables earlier in the document.</p>
+
+
+
+<h2>Buttons</h2>
+<p>Buttons should be treated as block elements. Their vertical size precludes them from fitting well within a line of text.</p>
+<p><button>Normal</button></p>
+<p><button class="outline">Outline</button></p>
+<p><button disabled>Disabled</button></p>
+
+
+<h2>Archive lists</h2>
+<p>Lists of previous entries are coded as unordered lists with the <code>archive-list</code> class. The links inside the list items have the <code>plain</code> class, and the dates are <code>span</code> elements with the class, <code>archive-list__date</code>.</p>
+
+<figure>
+<ul class="archive-list" role="list">
+  <li>
+    <a class="plain" href="/blog/2025/atlanta-city-council/">
+      <span class="archive-list__date">2025 Apr 30</span>
+      Who shows up to city council on time?
+    </a>
+  </li>
+
+  <li>
+    <a class="plain" href="/blog/2025/blog-questions-challenge/">
+      <span class="archive-list__date">2025 Mar 14</span>
+      Blog Questions Challenge
+    </a>
+  </li>
+
+  <li>
+    <a class="plain" href="/blog/2025/weeknotes-2025-w8/">
+      <span class="archive-list__date">2025 Feb 23</span>
+      Weeknotes 2025-W8
+    </a>
+  </li>
+
+  <li>
+    <a class="plain" href="/blog/2025/light-up-map/">
+      <span class="archive-list__date">2025 Feb 17</span>
+      Light-up map
+    </a>
+  </li>
+
+  <li>
+    <a class="plain" href="/blog/2025/framed/">
+      <span class="archive-list__date">2025 Feb 02</span>
+      Framed
+    </a>
+  </li>
+</ul>
+</figure>
+
+<h2>Charts and graphs</h2>
+<p>TK</p>
+
+
+
+<hr>
+<small>Last update: August 21, 2025</small>
+</div>
+
+{% endblock %}

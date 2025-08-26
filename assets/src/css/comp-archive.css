@@ -1,0 +1,18 @@
+.archive-list {
+  color: var(--color-brand);
+}
+
+.archive-list__date {
+  font-family: var(--f-mono);
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+  padding-right: 1ch;
+}
+
+.newgroup {
+  margin-block-start: 1lh;
+}
+
+.newgroup:first-child {
+  margin-block-start: 0;
+}

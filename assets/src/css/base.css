@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+
+    font-family: var(--f-sans);
+    font-size: var(--step-0);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border-top: 5px solid var(--color-brand);
+}
+
+main {
+    flex-grow: 1;
+}
+
+article {
+  margin-bottom: var(--space-l);
+}
+
+a {
+    text-underline-offset: .2em;
+    text-decoration-skip-link: auto;
+    color: var(--color-text-link);
+    transition: all .2s ease-in-out;
+}
+a:hover {
+    color: var(--color-text-link-alt);
+}
+.plain {
+    text-decoration: none;
+    color: inherit;
+}
+.plain:hover {
+    text-decoration: underline;
+}
+small {
+    font-size: .9em;
+}
+abbr:hover {
+    cursor: help;
+}

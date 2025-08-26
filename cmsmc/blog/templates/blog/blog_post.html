@@ -28,29 +28,29 @@
 {% endblock %}
 
 {% block main %}
-<article class="blog-post{% if draft %} draft{% endif %}">
+<article class="container {% if draft %} draft{% endif %}">
 
-<header>
-  <p class="post-meta">
-    <span class="post-meta__date">
+<hgroup>
+  <p class="meta">
     {% if draft %}
       {{ blog_post.created_at|date:"F j, Y" }}
     {% else %}
       {{ blog_post.published_at|date:"F j, Y" }}
     {% endif %}
-    </span>
 
     {% if blog_post.rss_club %}
-    <a href="https://curtmerrill.com/blog/2023/rss-club/" class="tag">RSS Club</a>
+    <a href="https://curtmerrill.com/blog/2023/rss-club/" class="plain tag">RSS Club</a>
     {% endif %}
 
     {% if blog_post.series %}
-    <a href="{{ blog_post.series.get_absolute_url }}" class="tag">{{ blog_post.series.name }}</a>
+    <a href="{{ blog_post.series.get_absolute_url }}" class="plain tag">{{ blog_post.series.name }}</a>
     {% endif %}
   </p>
 
   <h1 class="post-title">{{ blog_post.title }}</h1>
-</header>
+  {% if blog_post.subtitle %}<p class="subtitle">{{ blog_post.subtitle }}</p>{% endif %}
+
+</hgroup>
 
 {% if draft %}
   {{ post_body|safe }}

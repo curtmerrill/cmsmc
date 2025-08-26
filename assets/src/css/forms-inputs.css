@@ -1,0 +1,42 @@
+button {
+    --button-color: var(--color-brand);
+    --button-color-disabled: oklch(from var(--color-text-muted) .7 c h);
+    line-height: 1.1;
+    padding-block: .4em .5em;
+    padding-inline: 1em;
+
+    color: var(--color-light-gray);
+    background-color: var(--button-color);
+
+    border: 2px solid var(--button-color);
+    border-radius: 6px;
+
+    transition: all ease-in-out .15s;
+}
+button:hover {
+    background-color: oklch(from var(--button-color) .55 c h);
+    border-color: oklch(from var(--button-color) .55 c h);
+}
+
+button:active {
+    background-color: oklch(from var(--button-color) .65 c h);
+    border-color: oklch(from var(--button-color) .65 c h);
+}
+
+
+button.outline {
+    background-color: inherit;
+    color: var(--button-color);
+}
+
+button.outline:hover {
+    background-color: oklch(from var(--button-color) .9 .025 h);
+}
+button.outline:active {
+    background-color: oklch(from var(--button-color) .8 .05 h);
+}
+
+button[disabled] {
+    background-color: var(--button-color-disabled);
+    border-color: var(--button-color-disabled);
+}

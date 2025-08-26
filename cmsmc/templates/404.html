@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block main %}
-<p class="small">404</p>
-<h1>That page isn't here</h1>
+<div class="container">
+<hgroup>
+  <p class="meta">404</p>
+  <h1>That page isn't here</h1>
+</hgroup>
 
 <p>Try picking something from the <a href="{% url 'blog_archive' %}">archive</a>
 or you can go to the <a href="{% url 'index' %}">home page</a>.</p>
-
+</div>
 
 
 {% endblock %}
