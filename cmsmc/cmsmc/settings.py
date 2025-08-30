@@ -33,6 +33,17 @@ CSRF_TRUSTED_ORIGINS = [
     "https://curtmerrill.com",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
+    "http://127.0.0.1",
+    "https://static.curtmerrill.com",
+]
+
+CORS_URLS_REGEX = r"^/qs/.*$"
+
+CORS_ALLOW_METHODS = (
+    "GET",
+)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -47,12 +58,14 @@ INSTALLED_APPS = [
     "pages.apps.PagesConfig",
     # Third party
     "debug_toolbar",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
