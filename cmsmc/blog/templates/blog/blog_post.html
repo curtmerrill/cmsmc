@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ blog_post.title }} • {{ block.super }}{% endblock %}
+
+{% block headscripts %}
+    {% if blog_post.og_image %}
+    <meta property="og:image" content="{{ blog_post.og_image }}">
+    {% endif %}
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ blog_post.title }}",
+        "url": "https://curtmerrill.com{{ blog_post.get_absolute_url }}",
+        "identifier": "{{ blog_post.uuid }}",
+        "description": "",
+        "author": {
+          "@type": "Person",
+          "name": "Curt Merrill",
+          "email": "curt@curtmerrill.com",
+          "url": "https://curtmerrill.com"
+        },
+        "image": "{{ blog_post.og_image|default_if_none:"" }}",
+        "datePublished": "{{ blog_post.published_at|date:"Y-m-d" }}"
+      }
+
+
+    </script>
+{% endblock %}
+
+
+
+{% block main %}
+{% partialdef blog-post inline %}
+<article class="container">
+    <hgroup>
+        <p class="meta">
+            <a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.published_at|date:"F j, Y" }}</a>
+            {% if blog_post.series %} &bull; <a class="plain" href="{{ blog_post.series.get_absolute_url }}">{{ blog_post.series.name }}</a>{% endif %}</p>
+        <h1>{{ blog_post.title }}</h1>
+        {% if blog_post.subtitle %}
+            <p class="subtitle">{{ blog_post.subtitle|safe }}</p>
+        {% endif %}
+    </hgroup>
+
+    {{ blog_post.body_html|safe }}
+    </div>
+</article>
+{% endpartialdef blog-post %}
+{% endblock %}

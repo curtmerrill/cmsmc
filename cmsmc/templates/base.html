@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}curtmerrill.com{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    {# TODO: set up RSS feed #}
+
+    <link rel="dns-prefetch" href="//static.curtmerrill.com/">
+    {% block headscripts %}{% endblock %}
+</head>
+<body>
+    <header class="site-header" role="banner">
+        <div class="container">
+        <a class="site-name plain" href="/">curtmerrill.com</a>
+        </div>
+    </header>
+
+    <div class="main">
+    {% block main %}{% endblock %}
+    </div>
+    {# include tinylytics if in production #}
+    {% if request.headers.host == "curtmerrill.com" %}
+      <script src="https://tinylytics.app/embed/zT5_DSZQFy5GUANLbQR1.js" defer></script>
+    {% endif %}
+
+    <footer class="site-footer">
+    <div class="container">
+    <p><a class="plain" href="{% url 'blog_archive_view' %}">All posts</a></p>
+    <p>&copy; Curt Merrill<br><i title="He who endures, conquers">Vincit qui patitur</i></p>
+    </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+services:
+  django:
+    build: .
+    container_name: cmsmc
+    env_file: "cmsmc/.env"
+    volumes:
+      - ./data:/data
+      - ./staticfiles:/staticfiles
+      - ./media:/media
+    ports:
+      - "127.0.0.1:8200:8088"
+    restart: unless-stopped
+    networks:
+      cluster-network:
+        ipv4_address: 192.168.100.13
+
+
+networks:
+  cluster-network:
+    name: cluster-network
+    external: true

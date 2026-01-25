@@ -1,0 +1,43 @@
+article {
+    margin-block-start: var(--space-l);
+    margin-block-end: var(--space-2xl);
+    padding: var(--space-s-2xl);
+
+    background: #fff;
+    box-shadow: 0 0 5px var(--color-bg-02);
+
+    font-family: var(--f-serif);
+}
+
+
+hgroup {
+    margin-block-start: -1rlh;
+    margin-block-end: 1rlh;
+}
+
+hgroup > * {
+    margin-block-start: 0;
+    margin-block-end: 1rlh;
+}
+
+.meta {
+    color: var(--color-text-muted);
+    font-family: var(--f-sans);
+    font-size: var(--step--1);
+}
+
+a.footnote-ref {
+    font-family: var(--f-sans);
+    text-decoration: none;
+    background-color: var(--color-bg-01);
+    font-size: calc(var(--step--1) * .8);
+    font-weight: bold;
+    padding-inline: .5ch;
+    border-radius: .5lh;
+}
+
+.footnote {
+    margin-block-start: var(--space-2xl);
+    font-family: var(--f-sans);
+    font-size: var(--step--1);
+}

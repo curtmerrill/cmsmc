@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container">
+    <p class="display">Words, code and miscellany</p>
+</div>
+
+{% include "blog/blog_post.html#blog-post" %}
+
+<div class="container">
+<h2 class="h4">Recent posts</h2>
+{% with entries=recents %}
+    {% include "blog/blog_archive.html#archive-list" %}
+{% endwith %}
+</div>
+
+{% endblock %}

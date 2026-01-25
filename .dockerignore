@@ -1,0 +1,7 @@
+.venv
+staticfiles
+media
+.DS_store
+.nova
+data
+.env

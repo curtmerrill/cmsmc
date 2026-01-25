@@ -1,0 +1,22 @@
+[project]
+name = "cmsmc2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.0",
+    "markdown>=3.10",
+    "markdown-sub-sup>=0.0.3",
+    "pillow>=12.0.0",
+    "whitenoise[brotli]>=6.11.0",
+    "django-browser-reload>=1.21.0",
+    "django-debug-toolbar>=6.1.0",
+    "pytest>=9.0.2",
+    "pytest-django>=4.11.1",
+    "ruff>=0.14.8",
+    "markdown-del-ins>=1.0.0",
+    "markdown-mark>=0.0.1",
+    "dotenv>=0.9.9",
+    "granian[pname]>=2.6.1",
+]

@@ -1,0 +1,13 @@
+from django.urls import path
+
+from .views import blog_post_view
+from .views import blog_archive_view
+from .views import blog_series_view
+from .views import LatestBlogFeed
+
+urlpatterns = [
+    path("<int:year>/<slug:slug>/", blog_post_view, name="blog_post_view"),
+    path("series/<slug:slug>/", blog_series_view, name="blog_series_view"),
+    path("feed/", LatestBlogFeed()),
+    path("", blog_archive_view, name="blog_archive_view"),
+]

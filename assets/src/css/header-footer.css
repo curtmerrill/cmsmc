@@ -1,0 +1,29 @@
+header, footer {
+    font-family: var(--f-sans);
+}
+
+header {
+    background-color: var(--color-primary);
+    color: var(--color-bg-00);
+    padding-block: 12px;
+}
+
+a.site-name {
+    color: inherit;
+    font-weight: 800;
+    font-style: italic;
+}
+
+p.display {
+    margin-block-start: var(--space-m);
+    font-size: var(--step-5);
+    color: var(--color-text-muted);
+    font-weight: 100;
+    font-style: italic;
+}
+
+footer {
+    padding-block: 24px 12px;
+    background-color: var(--color-bg-01);
+    font-size: var(--step--1);
+}

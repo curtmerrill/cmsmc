@@ -1,0 +1,73 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favor of better control in authored CSS */
+body, h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd,
+ul, ol, figure, pre, hr {
+  margin-block-end: 0;
+}
+
+/* Make media easier to work with */
+img,
+picture,
+video,
+iframe,
+object,
+svg,
+embed {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+/* 'ex' = font's x-height */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* prevent sub and sup tags from affecting line-height */
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  font-size: .85em;
+}
+sub {
+  top: 0.4em;
+}
+
+/* Set core body defaults */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4, h5, h6
+button, input, label,
+thead, tfoot {
+  line-height: 1.1;
+}

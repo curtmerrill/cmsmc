@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Archive • {{ block.super }}{% endblock %}
+
+{% block headscripts %}
+{% endblock %}
+
+
+{% block main %}
+<main class="container">
+<h1>{% if series %}{{ series.name }}{% else %}Archive{% endif %}</h1>
+
+{% partialdef archive-list inline %}
+<ul class="archive-list">
+{% for e in entries %}
+<li class="{% ifchanged e.published_at.year %}newgroup{% endifchanged %}"><a class="plain" href="{{ e.get_absolute_url}}"><span class="archive-date">{{ e.published_at|date:"Y M d" }}</span> {{ e.title }}</a></li>
+{% endfor %}
+</ul>
+{% endpartialdef archive-list %}
+</main>
+{% endblock %}

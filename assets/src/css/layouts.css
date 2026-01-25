@@ -1,0 +1,9 @@
+.container {
+    width: 86vw;
+    max-width: 1032px;
+    margin-inline: auto;
+}
+
+.narrow {
+    max-width: 792px;
+}
