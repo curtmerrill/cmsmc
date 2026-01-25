@@ -62,8 +62,8 @@ wheels = [
 ]
 
 [[package]]
-name = "cmsmc2"
-version = "0.1.0"
+name = "cmsmc"
+version = "2026.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "django" },

@@ -22,6 +22,6 @@ class BlogPostAdmin(admin.ModelAdmin):
         "post_type",
     ]
 
+
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Series)
-

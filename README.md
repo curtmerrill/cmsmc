@@ -35,10 +35,7 @@ Create/edit `./cmsmc/.env` with appropriate settings:
 ```
 DEBUG="1"
 DJANGO_SECRET_KEY="localdev"
-QS_API_KEY="localdev"
-POSTGRES_DB=cmsmc2
-POSTGRES_USER=cmsmc2
-POSTGRES_PASSWORD=cmsmc2
+ENVIRON="dev"
 ```
 
 

@@ -11,6 +11,7 @@ POST_TYPES = [
     ("t", "tweet"),
 ]
 
+
 class BlogPostManager(models.Manager):
     def public(self):
         return (
@@ -25,13 +26,10 @@ class BlogPostManager(models.Manager):
         )
 
     def rss_club(self):
-        return(
+        return (
             super()
             .get_queryset()
-            .filter(
-                published_at__isnull=False,
-                published_at__lte=timezone.now()
-            )
+            .filter(published_at__isnull=False, published_at__lte=timezone.now())
             .order_by("-published_at")
         )
 
@@ -50,7 +48,6 @@ class Series(models.Model):
 
     def get_absolute_url(self):
         return reverse("blog_series_view", kwargs={"slug": self.slug})
-
 
     class Meta:
         ordering = ["name"]
@@ -71,10 +68,7 @@ class BlogPost(models.Model):
     series = models.ForeignKey(Series, models.SET_NULL, blank=True, null=True)
 
     primary_image = models.ImageField(
-        blank=True,
-        null=True,
-        max_length=511,
-        upload_to="media/%Y/"
+        blank=True, null=True, max_length=511, upload_to="media/%Y/"
     )
     og_image = models.CharField(max_length=511, blank=True, null=True)
 
@@ -89,7 +83,6 @@ class BlogPost(models.Model):
         editable=False,
         unique=True,
     )
-
 
     objects = BlogPostManager()
 
@@ -122,8 +115,11 @@ class BlogPost(models.Model):
         self.save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("blog_post_view", kwargs={"year": self.created_at.year, "slug": self.slug})
+        return reverse(
+            "blog_post_view", kwargs={"year": self.created_at.year, "slug": self.slug}
+        )
 
     class Meta:
-        ordering = ["-created_at",]
-
+        ordering = [
+            "-created_at",
+        ]

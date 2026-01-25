@@ -6,46 +6,86 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Series',
+            name="Series",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('slug', models.SlugField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("slug", models.SlugField(max_length=255)),
             ],
             options={
-                'verbose_name_plural': 'series',
-                'ordering': ['name'],
+                "verbose_name_plural": "series",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='BlogPost',
+            name="BlogPost",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('slug', models.CharField(blank=True, max_length=255)),
-                ('subtitle', models.TextField(blank=True, null=True)),
-                ('post_type', models.CharField(choices=[('a', 'article'), ('p', 'photo'), ('t', 'tweet')], default='a', max_length=1)),
-                ('rss_club', models.BooleanField(default=False)),
-                ('primary_image', models.ImageField(blank=True, max_length=511, null=True, upload_to='media/%Y/')),
-                ('og_image', models.CharField(blank=True, max_length=511, null=True)),
-                ('body_markdown', models.TextField(blank=True, null=True)),
-                ('body_html', models.TextField(blank=True, editable=False, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('published_at', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('uuid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('series', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='blog.series')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("slug", models.CharField(blank=True, max_length=255)),
+                ("subtitle", models.TextField(blank=True, null=True)),
+                (
+                    "post_type",
+                    models.CharField(
+                        choices=[("a", "article"), ("p", "photo"), ("t", "tweet")],
+                        default="a",
+                        max_length=1,
+                    ),
+                ),
+                ("rss_club", models.BooleanField(default=False)),
+                (
+                    "primary_image",
+                    models.ImageField(
+                        blank=True, max_length=511, null=True, upload_to="media/%Y/"
+                    ),
+                ),
+                ("og_image", models.CharField(blank=True, max_length=511, null=True)),
+                ("body_markdown", models.TextField(blank=True, null=True)),
+                ("body_html", models.TextField(blank=True, editable=False, null=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "published_at",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "uuid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "series",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="blog.series",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
     ]

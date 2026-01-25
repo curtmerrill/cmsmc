@@ -7,9 +7,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 dotenv.load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-ENVIRON = os.environ.get('ENVIRON', 'dev')
+ENVIRON = os.environ.get("ENVIRON", "dev")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-wb^9p_4o$i9!$=4&38(0$*qxk3lo0nqiotebfnh-uly4=wfxt0")
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-wb^9p_4o$i9!$=4&38(0$*qxk3lo0nqiotebfnh-uly4=wfxt0",
+)
 DEBUG = os.environ.get("DEBUG", "") == "1"
 
 ALLOWED_HOSTS = [

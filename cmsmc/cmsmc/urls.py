@@ -10,6 +10,3 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index_view, name="index_view"),
 ] + debug_toolbar_urls()
-
-
-

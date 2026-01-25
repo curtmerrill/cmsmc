@@ -12,7 +12,7 @@ def index_view(request):
     return render(
         request,
         "index.html",
-        { "blog_post": latest, "recents": recents },
+        {"blog_post": latest, "recents": recents},
     )
 
 
@@ -22,19 +22,21 @@ def blog_post_view(request, year, slug):
     return render(
         request,
         "blog/blog_post.html",
-        { "blog_post": blog_post },
+        {"blog_post": blog_post},
     )
 
 
 def blog_archive_view(request):
     entries = BlogPost.objects.public()
-    return render(request, "blog/blog_archive.html", { "entries": entries})
+    return render(request, "blog/blog_archive.html", {"entries": entries})
 
 
 def blog_series_view(request, slug):
     series = get_object_or_404(Series, slug=slug)
     entries = BlogPost.objects.public().filter(series__slug=slug)
-    return render(request, "blog/blog_archive.html", { "entries": entries, "series": series})
+    return render(
+        request, "blog/blog_archive.html", {"entries": entries, "series": series}
+    )
 
 
 class LatestBlogFeed(Feed):
@@ -57,8 +59,8 @@ class LatestBlogFeed(Feed):
                 """<p><small>
                   It’s a secret to everyone! <a href="https://daverupert.com/2018/01/welcome-to-rss-club/">Read more about RSS Club</a>.
                 </p></small></p>"""
-                + item.body_html +
-                """<hr><p><small>Thank you for using RSS</small></p>"""
+                + item.body_html
+                + """<hr><p><small>Thank you for using RSS</small></p>"""
             )
 
         return body
