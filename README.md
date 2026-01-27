@@ -30,14 +30,19 @@ Use [ruff](https://docs.astral.sh/ruff/) for linting and formatting:
 
 Clone/pull the repository.
 
+Create edit `./.env` with appropriate settings for docker-compose.yml:
+
+```
+ENVIRON="dev"
+APP_PORT=8200
+IP_ADDR=192.168.100.14
+```
+
 Create/edit `./cmsmc/.env` with appropriate settings:
 
 ```
 DEBUG="1"
 DJANGO_SECRET_KEY="localdev"
-ENVIRON="dev"
-APP_PORT=8210
-IP_ADDR=192.168.100.15
 ```
 
 
