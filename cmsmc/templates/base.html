@@ -12,7 +12,7 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    {# TODO: set up RSS feed #}
+    <link rel="alternate" href="{% url 'latest_entries_rss' %}" type="application/atom+xml" title="RSS">
 
     <link rel="dns-prefetch" href="//static.curtmerrill.com/">
     {% block headscripts %}{% endblock %}
