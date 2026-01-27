@@ -18,7 +18,7 @@ DEBUG = os.environ.get("DEBUG", "") == "1"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "beta.curtmerrill.com",
+    "staging.curtmerrill.com",
     "curtmerrill.com",
     "100.119.40.80",
 ]
@@ -28,7 +28,7 @@ INTERNAL_IPS = []
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "http://127.0.0.1",
-    "https://beta.curtmerrill.com",
+    "https://staging.curtmerrill.com",
     "https://curtmerrill.com",
 ]
 
