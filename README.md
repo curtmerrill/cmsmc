@@ -36,6 +36,8 @@ Create/edit `./cmsmc/.env` with appropriate settings:
 DEBUG="1"
 DJANGO_SECRET_KEY="localdev"
 ENVIRON="dev"
+APP_PORT=8210
+IP_ADDR=192.168.100.15
 ```
 
 
