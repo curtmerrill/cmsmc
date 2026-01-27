@@ -13,7 +13,12 @@
 {% partialdef archive-list inline %}
 <ul class="archive-list">
 {% for e in entries %}
-<li class="{% ifchanged e.published_at.year %}newgroup{% endifchanged %}"><a class="plain" href="{{ e.get_absolute_url}}"><span class="archive-date">{{ e.published_at|date:"Y M d" }}</span> {{ e.title }}</a></li>
+<li class="{% ifchanged e.published_at.year %}newgroup{% endifchanged %}">
+    <a class="plain archive-entry" href="{{ e.get_absolute_url}}">
+        <span class="archive-date">{{ e.published_at|date:"Y M d" }}</span>
+        <span class="archive-title">{{ e.title }}<span>
+    </a>
+</li>
 {% endfor %}
 </ul>
 {% endpartialdef archive-list %}

@@ -12,11 +12,25 @@
     margin-block-start: 0;
 }
 
+
+.archive-entry {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: inline-start;
+    line-height: calc(var(--step-0) * 1.4);
+    margin-bottom: 4px;
+}
+
 .archive-date {
+    display: block;
+    flex: 12ch 0 0;
     color: var(--color-text-muted);
     font-size: var(--step--1);
     font-family: var(--f-mono);
-    padding-inline-end: 1ch;
+}
+.archive-title {
+    display: block;
 }
 
 /*
