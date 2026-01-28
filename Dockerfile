@@ -8,7 +8,7 @@ RUN mkdir /app-media
 COPY ./pyproject.toml /pyproject.toml
 COPY ./uv.lock /uv.lock
 
-RUN uv sync --no-dev --locked
+RUN uv sync --no-dev
 
 COPY ./cmsmc /app
 
