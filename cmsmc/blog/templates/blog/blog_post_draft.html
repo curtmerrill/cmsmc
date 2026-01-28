@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}DRAFT • {{ blog_post.title }} • {{ block.super }}{% endblock %}
+
+{% block headscripts %}
+    {% if blog_post.og_image %}
+    <meta property="og:image" content="{{ blog_post.og_image }}">
+    {% endif %}
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ blog_post.title }}",
+        "url": "https://curtmerrill.com{{ blog_post.get_absolute_url }}",
+        "identifier": "{{ blog_post.uuid }}",
+        "description": "",
+        "author": {
+          "@type": "Person",
+          "name": "Curt Merrill",
+          "email": "curt@curtmerrill.com",
+          "url": "https://curtmerrill.com"
+        },
+        "image": "{{ blog_post.og_image|default_if_none:"" }}",
+        "datePublished": "{{ blog_post.published_at|date:"Y-m-d" }}"
+      }
+    </script>
+
+    <style>
+        body {
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--color-bg-00),
+                var(--color-bg-00) 40px,
+                var(--color-bg-01) 40px,
+                var(--color-bg-01) 80px
+            );
+        }
+        .bar {
+            background: var(--color-bg-02);
+        }
+    </style>
+{% endblock %}
+
+
+
+{% block main %}
+
+{% partialdef draft-controls inline %}
+<div class="bar">
+<div class="container">
+  <form method="POST">
+      {% csrf_token %}
+      <a href="/admin/blog/blogpost/{{ blog_post.id }}/change">Edit in Admin</a>
+      <button type="submit" name="publish">Publish</button>
+  </form>
+
+</div>
+</div>
+{% endpartialdef draft-controls %}
+
+{% include "blog/blog_post.html#blog-post" %}
+
+{% partial draft-controls %}
+
+{% endblock %}

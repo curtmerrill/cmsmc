@@ -76,7 +76,7 @@ class BlogPost(models.Model):
     body_html = models.TextField(blank=True, null=True, editable=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    published_at = models.DateTimeField(blank=True, null=True, editable=False)
+    published_at = models.DateTimeField(blank=True, null=True, editable=True)
 
     uuid = models.UUIDField(
         default=uuid.uuid4,
