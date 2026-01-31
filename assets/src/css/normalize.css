@@ -25,7 +25,6 @@ picture,
 video,
 iframe,
 object,
-svg,
 embed {
   max-width: 100%;
   display: block;
