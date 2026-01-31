@@ -2,6 +2,7 @@ import markdown as md
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.syndication.views import Feed
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -22,12 +23,16 @@ def index_view(request):
 
 def blog_post_view(request, year, slug):
     blog_post = get_object_or_404(BlogPost, slug=slug)
-    # TODO: Check if post is public
+
+    if not blog_post.is_published:
+        raise Http404()
+
     return render(
         request,
         "blog/blog_post.html",
         {"blog_post": blog_post},
     )
+
 
 
 @login_required

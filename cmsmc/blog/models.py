@@ -19,7 +19,7 @@ class BlogPostManager(models.Manager):
             .get_queryset()
             .filter(
                 rss_club=False,
-                published_at__isnull=False,
+                is_published=True,
                 published_at__lte=timezone.now(),
             )
             .order_by("-published_at")
@@ -29,7 +29,7 @@ class BlogPostManager(models.Manager):
         return (
             super()
             .get_queryset()
-            .filter(published_at__isnull=False, published_at__lte=timezone.now())
+            .filter(is_published=True, published_at__lte=timezone.now())
             .order_by("-published_at")
         )
 
@@ -77,6 +77,7 @@ class BlogPost(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     published_at = models.DateTimeField(blank=True, null=True, editable=True)
+    is_published = models.BooleanField(default=False)
 
     uuid = models.UUIDField(
         default=uuid.uuid4,
@@ -108,7 +109,7 @@ class BlogPost(models.Model):
                 "markdown_mark",
             ],
         )
-
+        self.is_published = True
         if not self.published_at:
             self.published_at = timezone.now()
 
