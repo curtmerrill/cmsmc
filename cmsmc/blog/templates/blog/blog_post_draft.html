@@ -30,10 +30,10 @@
         body {
             background: repeating-linear-gradient(
                 -45deg,
-                var(--color-bg-00),
-                var(--color-bg-00) 40px,
+                var(--color-bg-01),
                 var(--color-bg-01) 40px,
-                var(--color-bg-01) 80px
+                var(--color-bg-02) 40px,
+                var(--color-bg-02) 80px
             );
         }
         .bar {
@@ -51,7 +51,7 @@
 <div class="container">
   <form method="POST">
       {% csrf_token %}
-      <a href="/admin/blog/blogpost/{{ blog_post.id }}/change">Edit in Admin</a>
+      <a class="button neutral" href="/admin/blog/blogpost/{{ blog_post.id }}/change">Edit in Admin</a>
       <button type="submit" name="publish">Publish</button>
   </form>
 

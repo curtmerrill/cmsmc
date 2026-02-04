@@ -67,7 +67,7 @@ body {
     -webkit-font-smoothing: antialiased;
 
     color: var(--color-text);
-    background-color: var(--color-bg-00);
+    background-color: var(--color-bg-01);
 }
 
 main, .main {

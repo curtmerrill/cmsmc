@@ -3,7 +3,7 @@ article {
     margin-block-end: var(--space-2xl);
     padding: var(--space-s-2xl);
 
-    background: #fff;
+    background: var(--color-bg-00);
     box-shadow: 0 0 5px var(--color-bg-02);
 
     font-family: var(--f-serif);

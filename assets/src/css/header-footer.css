@@ -25,6 +25,6 @@ p.display {
 
 footer {
     padding-block: 24px 12px;
-    background-color: var(--color-bg-01);
+    background-color: var(--color-bg-02);
     font-size: var(--step--1);
 }
