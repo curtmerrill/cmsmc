@@ -106,13 +106,8 @@ h2, .h2 {
   font-weight: bold;
 }
 
-h3, .h3 {
-  font-size: var(--step-0);
-  font-weight: bold;
-}
-
-h4, h5, h6 ,
-.h4, .h5, .h6 {
+h3, h4, h5, h6 ,
+.h3 .h4, .h5, .h6 {
   font-size: var(--step-0);
   font-weight: bold;
 }
@@ -174,10 +169,12 @@ hr {
 }
 
 ol, ul {
-    padding-inline-start: var(--space-s);
+    padding-inline-start: var(--space-m);
 }
 
 ol > li::marker {
+    font-size: .8em;
+    font-family: var(--f-sans);
     font-weight: bold;
     color: var(--color-text-muted);
 }
