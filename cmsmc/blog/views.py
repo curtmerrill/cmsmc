@@ -35,6 +35,10 @@ def blog_post_view(request, year, slug):
     )
 
 
+def random_post_view(request):
+    blog_post = BlogPost.objects.public().order_by('?').first()
+    return redirect(blog_post.get_absolute_url())
+
 
 @login_required
 def blog_post_draft_view(request, slug):
