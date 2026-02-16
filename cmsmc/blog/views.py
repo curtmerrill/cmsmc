@@ -9,7 +9,8 @@ from django.shortcuts import render
 
 from .models import BlogPost
 from .models import Series
-
+from .forms import BlogPostPrimaryForm
+from .forms import BlogPostMetaForm
 
 def index_view(request):
     latest = BlogPost.objects.public().first()
@@ -55,11 +56,43 @@ def blog_post_draft_view(request, slug):
         ],
     )
 
+    main_form = BlogPostPrimaryForm(instance=blog_post)
+    meta_form = BlogPostMetaForm(instance=blog_post)
+
     return render(
         request,
         "blog/blog_post_draft.html",
-        {"blog_post": blog_post},
+        {
+            "blog_post": blog_post,
+            "blog_post_main_form": main_form,
+            "blog_post_meta_form": meta_form
+        },
     )
+
+
+@login_required
+def blog_post_edit_view(request, slug):
+    blog_post = get_object_or_404(BlogPost, slug=slug)
+
+    if request.method == "POST" and "save" in request.POST:
+        main_form = BlogPostPrimaryForm(request.POST, instance=blog_post, label_suffix='')
+        meta_form = BlogPostMetaForm(request.POST, instance=blog_post, label_suffix='')
+        main_form.save()
+        meta_form.save()
+    else:
+        main_form = BlogPostPrimaryForm(instance=blog_post, label_suffix='')
+        meta_form = BlogPostMetaForm(instance=blog_post, label_suffix='')
+
+    return render(
+        request,
+        "blog/blog_post_edit.html",
+        {
+            "blog_post": blog_post,
+            "blog_post_main_form": main_form,
+            "blog_post_meta_form": meta_form
+        },
+    )
+
 
 
 def blog_archive_view(request):

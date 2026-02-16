@@ -45,15 +45,15 @@
 
 
 {% block main %}
+<form method="POST">
 
 {% partialdef draft-controls inline %}
 <div class="bar">
 <div class="container">
-  <form method="POST">
       {% csrf_token %}
-      <a class="button neutral" href="/admin/blog/blogpost/{{ blog_post.id }}/change">Edit in Admin</a>
+      <a href="/admin/blog/blogpost/{{ blog_post.id }}/change">Edit in Admin</a>
+      <a href="{% url 'blog_post_edit_view' blog_post.slug %}">Edit</a>
       <button type="submit" name="publish">Publish</button>
-  </form>
 
 </div>
 </div>
@@ -63,4 +63,5 @@
 
 {% partial draft-controls %}
 
+</form>
 {% endblock %}

@@ -1,50 +1,22 @@
-/* BUTTONS */
-button, .button {
-    --btn-color: var(--color-primary);
-    --btn-border: var(--color-primary);
-    --btn-text: var(--color-bg-00);
-
-    font-size: .8em;
-    line-height: 1.25;
-    color: var(--btn-text) !important;
-    text-decoration: none !important;
-    border: 1px solid var(--btn-border);
-    background: var(--btn-color);
-    border-radius: 5px;
-    padding-inline: 1ch;
-    padding-block: 2px 3px;
-    transition: all ease-in-out .1s;
+label {
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+    line-height: 1.2;
 }
 
-button.neutral,
-.button.neutral {
-    --btn-color: var(--color-gray);
-    --btn-border: var(--color-gray);
-    --btn-text: var(--color-bg-00);
+input, textarea {
+    font-size: var(--step--1);
 }
 
-button.alt,
-.button.alt {
-    --btn-color: var(--color-alt);
-    --btn-border: var(--color-alt);
+textarea.resize {
+    field-sizing: content;
+}
+.field-block {
+    margin-block: var(--space-s);
 }
 
-button:hover,
-.button:hover {
-    cursor: pointer;
-    border-color: oklch(from var(--btn-border) calc(l + .1) c h);
-    background: oklch(from var(--btn-color) calc(l + .1) c h);
+.field-block > * {
+    display: block;
+    width: 100%;
 }
 
-button:active,
-.button.active {
-    border-color: oklch(from var(--btn-border) calc(l - .1) c h);
-    background: oklch(from var(--btn-color) calc(l - .1) c h);
-}
-
-button:disabled,
-.button.disabled {
-    opacity: 50%;
-    pointer-events: none;
-    cursor: not-allowed;
-}

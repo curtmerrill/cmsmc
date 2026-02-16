@@ -1,0 +1,54 @@
+/* BUTTONS */
+button, .button,
+input:is([type="button"], [type="reset"], [type="submit"]) {
+    --btn-color: var(--color-primary);
+    --btn-border: var(--color-primary);
+    --btn-text: var(--color-bg-00);
+
+    font-size: .8em;
+    line-height: 1.25;
+    color: var(--btn-text) !important;
+    text-decoration: none !important;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-color);
+    border-radius: 4px;
+    padding-inline: 2ch;
+    padding-block: 2px 3px;
+    transition: all ease-in-out .1s;
+}
+
+:where(
+    button, .button,
+    input:is([type="button"], [type="reset"], [type="submit"])
+):hover {
+    cursor: pointer;
+    border-color: oklch(from var(--btn-border) calc(l + .1) c h);
+    background: oklch(from var(--btn-color) calc(l + .1) c h);
+}
+
+:where(
+    button, .button,
+    input:is([type="button"], [type="reset"], [type="submit"])
+):is(:active, [data-active]) {
+    border-color: oklch(from var(--btn-border) calc(l - .1) c h);
+    background: oklch(from var(--btn-color) calc(l - .1) c h);
+}
+
+.neutral {
+    --btn-color: oklch(from var(--color-primary) calc(l + .1) .03 h);
+    --btn-border: oklch(from var(--color-primary) calc(l + .1) .03 h);
+    --btn-text: var(--color-bg-00);
+}
+
+.alt {
+    --btn-color: var(--color-alt);
+    --btn-border: var(--color-alt);
+}
+
+button[disabled],
+button[data-disabled],
+[data-submitting] button {
+    opacity: 50%;
+    pointer-events: none;
+    cursor: not-allowed;
+}

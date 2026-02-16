@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}DRAFT • {{ blog_post.title }} • {{ block.super }}{% endblock %}
+
+
+{% block main %}
+<form method="POST">
+
+{% partialdef draft-controls inline %}
+<div class="bar" style="--bar-bg: var(--color-bg-02);">
+<div class="container">
+  {% csrf_token %}
+  <a href="/admin/blog/blogpost/{{ blog_post.id }}/change">Edit in Admin</a>
+  <a href="{% url 'blog_post_draft_view' blog_post.slug %}">Preview</a>
+  <button name="save">Save</button>
+
+</div>
+</div>
+{% endpartialdef draft-controls %}
+
+<div class="container thirds">
+    <div class="form-wrapper two-thirds">
+    {{ blog_post_main_form }}
+    </div>
+
+    <div class="form-wrapper one-third">
+    {{ blog_post_meta_form }}
+    </div>
+</div>
+
+{% partial draft-controls %}
+
+</form>
+
+{% endblock %}
