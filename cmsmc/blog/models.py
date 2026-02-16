@@ -12,26 +12,19 @@ POST_TYPES = [
 ]
 
 
-class BlogPostManager(models.Manager):
+class BlogPostQuerySet(models.QuerySet):
     def public(self):
-        return (
-            super()
-            .get_queryset()
-            .filter(
-                rss_club=False,
-                is_published=True,
-                published_at__lte=timezone.now(),
-            )
-            .order_by("-published_at")
-        )
+        return self.filter(
+            rss_club=False,
+            is_published=True,
+            published_at__lte=timezone.now(),
+        ).order_by("-published_at")
 
     def rss_club(self):
-        return (
-            super()
-            .get_queryset()
-            .filter(is_published=True, published_at__lte=timezone.now())
-            .order_by("-published_at")
-        )
+        return self.filter(
+            is_published=True,
+            published_at__lte=timezone.now(),
+        ).order_by("-published_at")
 
 
 class Series(models.Model):
@@ -85,7 +78,7 @@ class BlogPost(models.Model):
         unique=True,
     )
 
-    objects = BlogPostManager()
+    objects = BlogPostQuerySet.as_manager()
 
     def __str__(self):
         return f"{self.post_type}: {self.title} ({self.created_at.year})"
