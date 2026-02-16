@@ -7,3 +7,38 @@
 .narrow {
     max-width: 792px;
 }
+
+.bar {
+    background-color: var(--bar-bg);
+    margin-block: 0;
+    padding-block: var(--space-xs);
+    line-height: 1;
+}
+.bar > container {
+    display: flex;
+    flex-direction: row;
+    column-gap: var(--space-xs);
+    align-items: flex-start;
+}
+
+.halves {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-s);
+}
+.half {
+    grid-column: auto / span 1;
+}
+
+.thirds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-s);
+
+}
+.one-third {
+    grid-column: auto / span 1;
+}
+.two-thirds {
+    grid-column: auto / span 2;
+}
