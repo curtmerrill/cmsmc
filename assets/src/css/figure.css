@@ -17,10 +17,11 @@ figure.border > :first-child {
 }
 figcaption {
     width: 100%;
-    margin-top: 1lh;
+    margin-top: .25lh;
     font-size: var(--step--1);
     color: var(--color-text-muted);
     line-height: 1.5;
+    align-self: end;
 }
 
 

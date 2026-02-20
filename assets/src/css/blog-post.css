@@ -41,3 +41,28 @@ a.footnote-ref {
     font-family: var(--f-sans);
     font-size: var(--step--1);
 }
+
+div.short-post {
+    margin-block-start: var(--space-l);
+    margin-block-end: var(--space-2xl);
+    border: 1px solid oklch( from var(--color-gray) 85% c h);
+    background: var(--color-bg-00);
+    box-shadow: 0 0 5px var(--color-bg-02);
+
+    border-radius: var(--space-xs);
+}
+.short-post-body {
+    padding-block: var(--space-s) 0;
+    padding-inline: var(--space-m);
+
+}
+.short-post-body > :first-child {
+    margin-block-start: 0;
+}
+.short-post-meta {
+    margin-block-start: var(--space-m);
+    padding-inline: var(--space-m);
+    font-size: var(--step--1);
+    border-radius: 0 0 var(--space-xs) var(--space-xs);
+
+}
