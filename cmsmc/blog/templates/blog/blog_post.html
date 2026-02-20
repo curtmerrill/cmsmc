@@ -33,36 +33,22 @@
 
 {% block main %}
 {% partialdef blog-post inline %}
-{% if blog_post.post_type == 'a' %}
 <article class="container">
     <hgroup>
         <p class="meta">
             <a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.published_at|date:"F j, Y" }}</a>
             {% if blog_post.series %} &bull; <a class="plain" href="{{ blog_post.series.get_absolute_url }}">{{ blog_post.series.name }}</a>{% endif %}
         </p>
+        {% if blog_post.post_type != 't' %}
         <h1>{{ blog_post.title }}</h1>
         {% if blog_post.subtitle %}
             <p class="subtitle">{{ blog_post.subtitle|safe }}</p>
+        {% endif %}
         {% endif %}
     </hgroup>
 
     {{ blog_post.body_html|safe }}
     </div>
 </article>
-{% elif blog_post.post_type == 't' %}
-
-<div class="short-post container narrow">
-    <div class="short-post-body">
-    {{ blog_post.body_html|safe }}
-    </div>
-    <div class="short-post-meta">
-    <p class="meta">
-    Posted <a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.created_at|date:"F j, Y" }}</a>
-    </p>
-    </div>
-</div>
-{% elif blog_post.post_type == 'p' %}
-
-{% endif %}
 {% endpartialdef blog-post %}
 {% endblock %}
