@@ -25,20 +25,30 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: var(--space-s);
+    container-type: inline-size;
 }
 .half {
-    grid-column: auto / span 1;
+    grid-column: auto / span 2;
 }
 
 .thirds {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: var(--space-s);
+    container-type: inline-size;
+}
+.thirds > * {
+    grid-column: auto / span 3;
+}
+@container (width > 550px) {
+    .half {
+        grid-column: auto / span 1;
+    }
+    .one-third {
+        grid-column: auto / span 1;
+    }
+    .two-thirds {
+        grid-column: auto / span 2;
+    }
 
-}
-.one-third {
-    grid-column: auto / span 1;
-}
-.two-thirds {
-    grid-column: auto / span 2;
 }

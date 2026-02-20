@@ -37,10 +37,13 @@
     <hgroup>
         <p class="meta">
             <a class="plain" href="{{ blog_post.get_absolute_url }}">{{ blog_post.published_at|date:"F j, Y" }}</a>
-            {% if blog_post.series %} &bull; <a class="plain" href="{{ blog_post.series.get_absolute_url }}">{{ blog_post.series.name }}</a>{% endif %}</p>
+            {% if blog_post.series %} &bull; <a class="plain" href="{{ blog_post.series.get_absolute_url }}">{{ blog_post.series.name }}</a>{% endif %}
+        </p>
+        {% if blog_post.post_type != 't' %}
         <h1>{{ blog_post.title }}</h1>
         {% if blog_post.subtitle %}
             <p class="subtitle">{{ blog_post.subtitle|safe }}</p>
+        {% endif %}
         {% endif %}
     </hgroup>
 
